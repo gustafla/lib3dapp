@@ -66,3 +66,7 @@ void Window::swapBuffers() {
         if (events.key.keysym.sym == SDLK_ESCAPE)
             exit(0);
 }
+
+float Window::getTime() {
+    return (1.0f*SDL_GetTicks())/1000.0f;
+}

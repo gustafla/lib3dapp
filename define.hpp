@@ -19,4 +19,9 @@
 //--------------------------------DIRECTORIES----------------------------------
 //-----------------------------------------------------------------------------
 
-#define DATA_DIR "data"
+#define DATA_DIR    "data"
+#define SHADER_DIR  "shaders"
+#define TEXTURE_DIR "textures"
+#define SOUND_DIR   "sounds"
+#define MUSIC_DIR   "music"
+#define MESH_DIR    "meshes"

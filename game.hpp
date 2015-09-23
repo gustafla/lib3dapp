@@ -4,10 +4,10 @@
 
 class Game {
     public:
-        Game(Window& _gameWin);
+        Game(Window& _window);
         void draw();
         bool isRunning();
     private:
-        Window& gameWin;
+        Window& window;
         bool running;
 };
