@@ -1,0 +1,14 @@
+# Binaries
+
+game
+
+
+# Build intermediate files
+
+*.o
+*.d
+
+
+# Logs
+
+log*
