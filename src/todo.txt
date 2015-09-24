@@ -1,0 +1,28 @@
+TODO:
+
+Vector types
+    - float only
+    - struct
+    - overloaded operators
+    - basic vector math functionality
+3D model and texture loading
+Shader loading
+3D mesh type
+primitive types
+    - Static struct in global scope?
+    - In Graphics that gets instanced in Game?
+        - May the Graphics object contain reference to all resources as well?
+            - YES!
+                - But free unneeded and reload between scenes to save GPU memory
+text string drawing
+MapObject class
+    - size
+    - pointer to mesh etc
+    - solid
+    - objects class with an array of every object in game
+        - "Object IDs"
+Shared resources?
+Map
+    - Is a list of each object
+        - Or an array for each tile?
+- Map editor

@@ -1,9 +1,0 @@
-TODO:
-
-Vector types
-    - float only
-    - struct
-    - overloaded operators
-    - basic vector math functionality
-3D model and texture loading
-Shader loading

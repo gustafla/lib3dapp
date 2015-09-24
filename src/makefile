@@ -1,4 +1,4 @@
-# An makefile to build gl-rpg.
+# A makefile to build gl-rpg.
 
 SRCS=main.cpp window.cpp game.cpp config.cpp
 TARGET=game
