@@ -19,7 +19,7 @@ void Config::parseArgs(int argc, char** argv) {
             fullscreen=true;
         } else {
             std::cout << "Unrecognized argument \"" << argv[i] << "\".\n";
-            exit(0);
+            exit(ERR_SUCCESS);
         }
     }
 }

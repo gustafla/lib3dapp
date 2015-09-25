@@ -4,8 +4,8 @@ Mesh::Mesh() {
     
 }
 
-void Mesh::pushCoord(vec4 coord) {
-    positions.push_back(coord);
+void Mesh::pushPosition(vec4 position) {
+    positions.push_back(position);
 }
 
 void Mesh::pushNormal(vec4 normal) {
@@ -16,7 +16,7 @@ void Mesh::pushTexcoord(vec2 texcoord) {
     texcoords.push_back(texcoord);
 }
 
-std::vector<vec4>& Mesh::getCoords() {
+std::vector<vec4>& Mesh::getPositions() {
     return positions;
 }
 

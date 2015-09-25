@@ -28,7 +28,7 @@ Window::Window(const Config conf) {
         std::cout << "Couldn't get SDL OpenGL window.\n";
         std::cout << "SDL Error: " << SDL_GetError() << std::endl;
         SDL_Quit();
-        exit(1);
+        exit(ERR_WINDOW);
     }
 
     context = SDL_GL_CreateContext(window);
@@ -39,7 +39,7 @@ Window::Window(const Config conf) {
 
     if (rev != GLEW_OK) {
         std::cout << "Glew error: " << glewGetErrorString(rev) << std::endl;
-        exit(1);
+        exit(ERR_WINDOW);
     }
 
     SDL_GL_SetSwapInterval(1);
@@ -61,10 +61,10 @@ void Window::swapBuffers() {
     SDL_PollEvent(&events);
 
     if (events.type == SDL_QUIT)
-        exit(0);
+        exit(ERR_SUCCESS);
     else if (events.type == SDL_KEYDOWN)
         if (events.key.keysym.sym == SDLK_ESCAPE)
-            exit(0);
+            exit(ERR_SUCCESS);
 }
 
 float Window::getTime() {

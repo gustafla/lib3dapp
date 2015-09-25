@@ -6,10 +6,10 @@
 class Mesh {
     public:
         Mesh();
-        void pushCoord(vec4 coord);
+        void pushPosition(vec4 position);
         void pushNormal(vec4 normal);
         void pushTexcoord(vec2 texcoord);
-        std::vector<vec4>& getCoords();
+        std::vector<vec4>& getPositions();
         std::vector<vec4>& getNormals();
         std::vector<vec2>& getTexcoords();
         bool getAOSArray(std::vector<float>& array);

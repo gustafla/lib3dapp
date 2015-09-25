@@ -23,11 +23,11 @@ handle(0), vname(vsName), fname(fsName) {
     std::string fsTemp;
     std::string vsTemp;
     if (!loadFile(fsName, fsTemp))
-        exit(40);
+        exit(ERR_SHADER);
     if (!loadFile(vsName, vsTemp))
-        exit(41);
+        exit(ERR_SHADER);
     if(compProgram(vsTemp, fsTemp) == GL_FALSE)
-        exit(1);
+        exit(ERR_SHADER);
 }
 
 Shader::~Shader() {

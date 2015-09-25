@@ -1,9 +1,13 @@
 #include "buffer.hpp"
 
-Buffer::Buffer(GLfloat* data, unsigned int size, GLuint hint) {
+Buffer::Buffer(GLfloat* data, GLuint size, GLuint hint) {
     glGenBuffers(1, &handle);
     bind();
     glBufferData(GL_ARRAY_BUFFER, size, data, hint);
+}
+
+Buffer::Buffer():
+handle(0) {
 }
 
 Buffer::~Buffer() {
