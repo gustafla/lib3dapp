@@ -1,6 +1,8 @@
 #pragma once
 
 #include "window.hpp"
+#include "static_object.hpp"
+#include "shader.hpp"
 
 class Game {
     public:
@@ -10,4 +12,6 @@ class Game {
     private:
         Window& window;
         bool running;
+        StaticObject* triangle;
+        Shader shader;
 };

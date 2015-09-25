@@ -3,7 +3,7 @@
 #include <iostream>
 #include "define.hpp"
 
-inline std::string shaderPath(std::string name) {
+std::string shaderPath(std::string name) {
     std::string tmp = DATA_DIR;
     tmp += "/";
     tmp += SHADER_DIR;
