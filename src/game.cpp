@@ -1,12 +1,15 @@
 #include "game.hpp"
 #include "graphics.hpp"
 #include "vectors.hpp"
+#include <cmath>
 
 Game::Game(Window& _window):
 running(true),
 window(_window),
 shader(shaderPath("simple.vert"), shaderPath("color.frag")) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
     Mesh mesh;
     mesh.pushPosition(vec4( 1, -1, 0, 1));
     mesh.pushPosition(vec4( 0,  1, 0, 1));
@@ -19,6 +22,8 @@ bool Game::isRunning() {
 }
 
 void Game::draw() {
+    window.bindBuffer();
+    glClearColor(sin(window.getTime()*M_PI)*0.5+0.5, 0.0, 0.0, 1.0);
     shader.use();
     glUniform4f(shader.getUfmHandle("u_color"), 1.0, 1.0, 0.5, 1.0);
     triangle->draw(shader);

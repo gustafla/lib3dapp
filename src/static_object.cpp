@@ -21,7 +21,7 @@ verts(mesh.getPositions().size()) {
     }
     std::vector<GLfloat> array;
     if (!mesh.getAOSArray(array)) {
-        std::cout << "StaticObject " << this << " tried to load an incomplete mesh: " << &mesh << "\n.";
+        std::cout << "StaticObject " << this << " tried to load an incomplete Mesh: " << &mesh << ".\n";
         std::cout << "Mesh vertices:  " << mesh.getPositions().size() << "\n";
         std::cout << "Mesh texcoords: " << mesh.getTexcoords().size() << "\n";
         std::cout << "Mesh normals:   " << mesh.getNormals().size() << "\n";

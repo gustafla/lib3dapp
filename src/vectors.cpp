@@ -109,7 +109,7 @@ vec3::vec3(float a) {
 vec3::vec3(float a, float b, float c) {
     x=a;
     y=b;
-    y=c;
+    z=c;
 }
 
 vec3& vec3::operator=(vec3 a) {
@@ -214,8 +214,8 @@ vec4::vec4(float a) {
 vec4::vec4(float a, float b, float c, float d) {
     x=a;
     y=b;
-    y=c;
-    y=d;
+    z=c;
+    w=d;
 }
 
 vec4& vec4::operator=(vec4 a) {

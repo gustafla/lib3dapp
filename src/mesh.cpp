@@ -35,15 +35,10 @@ bool Mesh::getAOSArray(std::vector<float>& array) {
         if (texcoords.size() == 0 || texcoords.size() == positions.size()) {
             if (normals.size() == 0 || normals.size() == positions.size()) {
                 for (unsigned int i = 0; i<positions.size(); i++) {
-                    std::cout << "Vertex " << i << std::endl;
                     array.push_back(positions[i].x);
-                    std::cout << "x: " << positions[i].x << std::endl;
                     array.push_back(positions[i].y);
-                    std::cout << "y: " << positions[i].y << std::endl;
                     array.push_back(positions[i].z);
-                    std::cout << "z: " << positions[i].z << std::endl;
                     array.push_back(positions[i].w);
-                    std::cout << "w: " << positions[i].w << std::endl;
                     if (texcoords.size()) {
                         array.push_back(texcoords[i].x);
                         array.push_back(texcoords[i].y);

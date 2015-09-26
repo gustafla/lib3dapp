@@ -9,6 +9,7 @@ class Window {
         ~Window();
         void close();
         void swapBuffers();
+        void bindBuffer();
         float getTime();
     private:
         SDL_Window* window;
