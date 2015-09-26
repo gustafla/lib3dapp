@@ -17,19 +17,19 @@ void Mesh::pushTexcoord(vec2 texcoord) {
     texcoords.push_back(texcoord);
 }
 
-std::vector<vec4>& Mesh::getPositions() {
+const std::vector<vec4>& Mesh::getPositions() {
     return positions;
 }
 
-std::vector<vec4>& Mesh::getNormals() {
+const std::vector<vec4>& Mesh::getNormals() {
     return normals;
 }
 
-std::vector<vec2>& Mesh::getTexcoords() {
+const std::vector<vec2>& Mesh::getTexcoords() {
     return texcoords;
 }
 
-bool Mesh::getAOSArray(std::vector<float>& array) {
+const bool Mesh::getAOSArray(std::vector<float>& array) {
     bool success = false;
     if (positions.size()) {
         if (texcoords.size() == 0 || texcoords.size() == positions.size()) {

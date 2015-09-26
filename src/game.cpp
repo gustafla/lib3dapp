@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "graphics.hpp"
 #include "vectors.hpp"
+#include "obj_file.hpp"
 #include <cmath>
 
 Game::Game(Window& _window):
@@ -10,10 +11,7 @@ shader(shaderPath("simple.vert"), shaderPath("color.frag")) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
-    Mesh mesh;
-    mesh.pushPosition(vec4( 1, -1, 0, 1));
-    mesh.pushPosition(vec4( 0,  1, 0, 1));
-    mesh.pushPosition(vec4(-1, -1, 0, 1));
+    Mesh mesh = loadOBJFile(meshPath("revision.obj"));
     triangle = new StaticObject(mesh);
 }
 

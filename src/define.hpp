@@ -35,6 +35,7 @@
 #define ERR_WINDOW         1
 #define ERR_SHADER         2
 #define ERR_STATIC_OBJECT  3
+#define ERR_OBJ_FILE       4
 
 
 //-----------------------------------------------------------------------------

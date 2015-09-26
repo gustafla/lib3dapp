@@ -12,3 +12,8 @@ game
 # Logs
 
 log*
+
+
+#big files
+
+*.wav

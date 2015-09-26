@@ -5,7 +5,7 @@
 
 class Window {
     public:
-        Window(const Config conf);
+        Window(const Config& conf);
         ~Window();
         void close();
         void swapBuffers();

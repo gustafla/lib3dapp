@@ -4,7 +4,7 @@
 #include "define.hpp"
 #include <cstring>
 
-Window::Window(const Config conf) {
+Window::Window(const Config& conf) {
     int err;
     char caption[80];
     strcpy(caption, GAME_NAME);

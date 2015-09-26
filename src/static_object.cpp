@@ -50,6 +50,7 @@ void StaticObject::draw(Shader& shader) {
         glVertexAttribPointer(shader.getAtrHandle(NAME_TEXCOORD), SIZE_TEXCOORD, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
         offset += SIZE_TEXCOORD * sizeof(GLfloat);
     }
+    
     if (normals) {
         glEnableVertexAttribArray(shader.getAtrHandle(NAME_NORMAL));
         glVertexAttribPointer(shader.getAtrHandle(NAME_NORMAL), SIZE_NORMAL, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
