@@ -1,6 +1,6 @@
 # A makefile to build gl-rpg.
 
-SRCS=main.cpp window.cpp game.cpp config.cpp vectors.cpp shader.cpp util.cpp mesh.cpp buffer.cpp static_object.cpp obj_file.cpp
+SRCS=main.cpp window.cpp game.cpp config.cpp vectors.cpp shader.cpp util.cpp mesh.cpp buffer.cpp static_object.cpp obj_file.cpp matrices.cpp mvp.cpp
 TARGET=game
 OBJS=$(SRCS:.cpp=.o)
 CFLAGS=-g -MMD -MP

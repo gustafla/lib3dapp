@@ -3,6 +3,7 @@
 #include "window.hpp"
 #include "static_object.hpp"
 #include "shader.hpp"
+#include "mvp.hpp"
 
 class Game {
     public:
@@ -14,4 +15,6 @@ class Game {
         bool running;
         StaticObject* triangle;
         Shader shader;
+        GLfloat projection[4*4];
+        MVP* mvp;
 };

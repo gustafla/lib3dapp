@@ -7,8 +7,8 @@
 
 int main(int argc, char* argv[]) {
     const Config conf(argc, argv);
-    Window gameWin(conf);
-    Game game(gameWin);
+    Window window(conf);
+    Game game(window);
 
     while(game.isRunning()) {
         game.draw();

@@ -4,7 +4,10 @@
 #include "define.hpp"
 #include <cstring>
 
-Window::Window(const Config& conf) {
+Window::Window(const Config& conf):
+width(conf.w),
+height(conf.h),
+aspect(((float)conf.w)/((float)conf.h)) {
     int err;
     char caption[80];
     strcpy(caption, GAME_NAME);
@@ -73,4 +76,24 @@ float Window::getTime() {
 
 void Window::bindBuffer() {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+unsigned int Window::getWidth() {
+    return width;
+}
+
+unsigned int Window::getHeight() {
+    return height;
+}
+
+float Window::getAspect() {
+    return aspect;
+}
+
+void Window::resize(unsigned int w, unsigned int h) {
+    width=w;
+    height=h;
+    aspect=((float)w)/((float)h);
+    SDL_SetWindowSize(window, w, h);
+    glViewport(0, 0, w, h);
 }

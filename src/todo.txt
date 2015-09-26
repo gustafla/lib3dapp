@@ -1,14 +1,8 @@
 TODO:
 
-Vector types
-    - float only
-    - struct
-    - overloaded operators
-    - basic vector math functionality
-3D model and texture loading
-Shader loading
-3D mesh type
-primitive types
+Matrices
+texture loading
+primitives
     - Static struct in global scope?
     - In Graphics that gets instanced in Game?
         - May the Graphics object contain reference to all resources as well?
