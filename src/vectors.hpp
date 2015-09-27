@@ -11,6 +11,7 @@ struct vec2 { //C++ structs get types without typedef
     vec2();
     vec2(float a);
     vec2(float a, float b);
+    vec2(const vec2& a);
     vec2& operator=(vec2 a);
     vec2& operator+=(vec2 a);
     vec2& operator-=(vec2 a);
@@ -33,6 +34,7 @@ struct vec3 {
     vec3();
     vec3(float a);
     vec3(float a, float b, float c);
+    vec3(const vec3& a);
     vec3& operator=(vec3 a);
     vec3& operator+=(vec3 a);
     vec3& operator-=(vec3 a);
@@ -56,7 +58,8 @@ struct vec4 {
     vec4();
     vec4(float a);
     vec4(float a, float b, float c, float d);
-    vec4& operator=(vec4 arg);
+    vec4(const vec4& a);
+    vec4& operator=(vec4 a);
     vec4& operator+=(vec4 a);
     vec4& operator-=(vec4 a);
     vec4& operator*=(float a);

@@ -61,6 +61,30 @@ void getPProjMat(float* mat, float fov, float aspect, float znear, float zfar) {
     mat[15] = 0.0f;
 }
 
+mat4 getPProjMat(float fov, float aspect, float znear, float zfar) {
+    mat4 mat;
+    
+    float xymax = znear * tan(fov * (M_PI/360.0));
+    float ymin = -xymax;
+    float xmin = -xymax;
+
+    float width = xymax - xmin;
+    float height = xymax - ymin;
+
+    float depth = zfar - znear;
+    float q = -(zfar + znear) / depth;
+    float qn = -2 * (zfar * znear) / depth;
+
+    float w = 2 * znear / width;
+    w = w / aspect;
+    float h = 2 * znear / height;
+    
+    mat.a = vec4(w, 0.0f, 0.0f, 0.0f);
+    mat.b = vec4(0.0f, h, 0.0f, 0.0f);
+    mat.c = vec4(0.0f, 0.0f, q, -1.0f);
+    mat.d = vec4(0.0f, 0.0f, qn, 0.0f);
+}
+
 void getXRotMat(float* mat, float a) {
     mat[0] = 1.0f;
     mat[1] = 0.0f;
@@ -222,4 +246,61 @@ void getScaleMat(float* mat, float x) {
     mat[13] = 0.0f;
     mat[14] = 0.0f;
     mat[15] = 1.0f;
+}
+
+mat4::mat4() {
+    a = b = c = d = vec4(0.0f);
+}
+
+mat4::mat4(const mat4& r) {
+    a = r.a;
+    b = r.b;
+    c = r.c;
+    d = r.d;
+}
+
+mat4::mat4(vec4 _a, vec4 _b, vec4 _c, vec4 _d) {
+    a = _a;
+    b = _b;
+    c = _c;
+    d = _d;
+}
+
+mat4& mat4::operator=(mat4 r) {
+    a = r.a;
+    b = r.b;
+    c = r.c;
+    d = r.d;
+    return *this;
+}
+
+mat4& mat4::operator*=(mat4 r) {
+    vec4 res[4];
+    vec4 rhs[4] = {r.a, r.b, r.c, r.d};
+    vec4 lhsRows[4] = {
+        vec4(a.x, b.x, c.x, d.x),
+        vec4(a.y, b.y, c.y, d.y),
+        vec4(a.z, b.z, c.z, d.z),
+        vec4(a.w, b.w, c.w, d.w)
+    };
+    
+    for (int i=0; i<4; i++) {
+        res[i].x = vdot(lhsRows[0], rhs[i]);
+        res[i].y = vdot(lhsRows[1], rhs[i]);
+        res[i].z = vdot(lhsRows[2], rhs[i]);
+        res[i].w = vdot(lhsRows[3], rhs[i]);
+    }
+    
+    a=res[0];
+    b=res[1];
+    c=res[2];
+    d=res[3];
+    
+    return *this;
+}
+
+mat4 mat4::operator*(const mat4& b) {
+    mat4 a = *this;
+    a *= b;
+    return a;
 }

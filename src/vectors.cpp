@@ -16,6 +16,11 @@ vec2::vec2(float a, float b) {
     y=b;
 }
 
+vec2::vec2(const vec2& a) {
+    x=a.x;
+    y=a.y;
+}
+
 vec2& vec2::operator=(vec2 a) {
     x=a.x;
     y=a.y;
@@ -110,6 +115,12 @@ vec3::vec3(float a, float b, float c) {
     x=a;
     y=b;
     z=c;
+}
+
+vec3::vec3(const vec3& a) {
+    x=a.x;
+    y=a.y;
+    z=a.z;
 }
 
 vec3& vec3::operator=(vec3 a) {
@@ -216,6 +227,13 @@ vec4::vec4(float a, float b, float c, float d) {
     y=b;
     z=c;
     w=d;
+}
+
+vec4::vec4(const vec4& a) {
+    x=a.x;
+    y=a.y;
+    z=a.z;
+    w=a.w;
 }
 
 vec4& vec4::operator=(vec4 a) {
