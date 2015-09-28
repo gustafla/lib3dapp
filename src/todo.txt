@@ -1,6 +1,5 @@
 TODO:
 
-Matrices
 texture loading
 primitives
     - Static struct in global scope?
@@ -19,4 +18,6 @@ Shared resources?
 Map
     - Is a list of each object
         - Or an array for each tile?
+            - Should consider baking to a big static mesh
+                - Texturing becomes harder
 - Map editor

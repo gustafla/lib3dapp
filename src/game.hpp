@@ -15,6 +15,6 @@ class Game {
         bool running;
         StaticObject* triangle;
         Shader shader;
-        GLfloat projection[4*4];
+        mat4 projection;
         MVP* mvp;
 };

@@ -1,75 +1,82 @@
 #include "mvp.hpp"
 
-MVP::MVP(GLfloat* _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale) {
-    projection = _projection;
-    getScaleMat(identity, 1.0f);
-    getTranslationMat(viewt, vtx, vty, vtz);
-    getXYZRotMat(viewr, vrx, vry, vrz);
-    multMat4(view, viewt, viewr);
+MVP::MVP(mat4& _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale):
+projection(_projection) {
+    identity = getScaleMat(1.0f);
+    viewTranslation = getTranslationMat(vtx, vty, vtz);
+    viewRotation = getXYZRotMat(vrx, vry, vrz);
+    view  = viewTranslation*viewRotation;
     
-    getTranslationMat(translation, tx, ty, tz);
-    getXYZRotMat(rotation, rx, ry, rz);
-    getScaleMat(scale, _scale);
+    modelTranslation = getTranslationMat(tx, ty, tz);
+    modelRotation = getXYZRotMat(rx, ry, rz);
+    modelScale = getScaleMat(_scale);
+    
     buildModel();
-    
     buildMVP();
 }
 
 void MVP::buildMVP() {
-    if (projection) {
-        multMat4(tmp, projection, view);
-        multMat4(mvp, tmp, model);
-    }
+    mvp = projection * view * model;
 }
 
 void MVP::buildModel() {
-    multMat4(tmp, translation, rotation);
-    multMat4(model, tmp, scale);
+    model = modelTranslation * modelRotation * modelScale;
 }
 
-void MVP::setProjection(GLfloat* _projection) {
+void MVP::buildView() {
+    view = viewRotation * viewTranslation;
+}
+
+void MVP::setProjection(mat4& _projection) {
     projection = _projection;
 }
 
 void MVP::setView(GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz) {
-    getTranslationMat(viewt, vtx, vty, vtz);
-    getXYZRotMat(viewr, vrx, vry, vrz);
-    multMat4(view, viewr, viewt);
+    viewTranslation = getTranslationMat(vtx, vty, vtz);
+    viewRotation = getXYZRotMat(vrx, vry, vrz);
+    buildView();
 }
 
 void MVP::setViewTranslation(GLfloat vtx, GLfloat vty, GLfloat vtz) {
-    getTranslationMat(viewt, vtx, vty, vtz);
-    multMat4(view, viewr, viewt);
+    viewTranslation = getTranslationMat(vtx, vty, vtz);
+    view = viewRotation * viewTranslation;
 }
 
 void MVP::setViewRotation(GLfloat vrx, GLfloat vry, GLfloat vrz) {
-    getXYZRotMat(viewr, vrx, vry, vrz);
-    multMat4(view, viewr, viewt);
+    viewRotation = getXYZRotMat(vrx, vry, vrz);
+    view = viewRotation * viewTranslation;
 }
 
 void MVP::setModel(GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale) {
-    getTranslationMat(translation, tx, ty, tz);
-    getXYZRotMat(rotation, rx, ry, rz);
-    getScaleMat(scale, _scale);
-    multMat4(tmp, translation, rotation);
-    multMat4(model, tmp, scale);
+    modelTranslation = getTranslationMat(tx, ty, tz);
+    modelRotation = getXYZRotMat(rx, ry, rz);
+    modelScale = getScaleMat(_scale);
+    model = modelTranslation * modelRotation * modelScale;
 }
 
 void MVP::setModelTranslation(GLfloat tx, GLfloat ty, GLfloat tz) {
-    getTranslationMat(translation, tx, ty, tz);
+    modelTranslation = getTranslationMat(tx, ty, tz);
 }
 
 void MVP::setModelRotation(GLfloat rx, GLfloat ry, GLfloat rz) {
-    getXYZRotMat(rotation, rx, ry, rz);
+    modelRotation = getXYZRotMat(rx, ry, rz);
 }
 void MVP::setModelScale(GLfloat _scale) {
-    getScaleMat(scale, _scale);
+    modelScale = getScaleMat(_scale);
 }
 
-GLfloat* MVP::getView() {
+const mat4& MVP::getView() {
     return view;
 }
 
-GLfloat* MVP::getModel() {
+const mat4& MVP::getModel() {
     return model;
+}
+
+const mat4& MVP::getMVP() {
+    return mvp;
+}
+
+const float* MVP::getMVPArray() {
+    return (const float*)&mvp;
 }

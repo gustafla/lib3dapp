@@ -5,19 +5,20 @@
 
 class MVP {
     public:
-        MVP(GLfloat* _projection, GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f, GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f, GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f, GLfloat rx=0.0f, GLfloat ry=0.0f, GLfloat rz=0.0f, GLfloat _scale=1.0f);
+        MVP(mat4& _projection, GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f, GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f, GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f, GLfloat rx=0.0f, GLfloat ry=0.0f, GLfloat rz=0.0f, GLfloat _scale=1.0f);
         void buildMVP();
         void buildModel();
-        //void buildView();
-        GLfloat mvp[16];
-        GLfloat* getView();
-        GLfloat* getModel();
-        void setProjection(GLfloat* _projection);
+        void buildView();
+        
+        const mat4& getView();
+        const mat4& getModel();
+        const mat4& getMVP();
+        const float* getMVPArray();
+        void setProjection(mat4& projection);
         
         void setView(GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f, GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f);
         void setViewTranslation(GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f);
         void setViewRotation(GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f);
-        //void setViewRotation2(GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f);
         
         void setModel(GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f, GLfloat rx=0.0f, GLfloat ry=0.0f, GLfloat rz=0.0f, GLfloat _scale=1.0f);
         void setModelTranslation(GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f);
@@ -25,18 +26,18 @@ class MVP {
         void setModelScale(GLfloat _scale=1.0f);
         
     private:
-        GLfloat* projection;
+        mat4 mvp;
+    
+        mat4& projection;
         
-        GLfloat viewt[16];
-        GLfloat viewr[16];
-        //GLfloat viewr2[16];
-        GLfloat view[16];
+        mat4 viewTranslation;
+        mat4 viewRotation;
+        mat4 view;
         
-        GLfloat rotation[16];
-        GLfloat scale[16];
-        GLfloat translation[16];
+        mat4 modelRotation;
+        mat4 modelScale;
+        mat4 modelTranslation;
+        mat4 model;
         
-        GLfloat model[16];
-        GLfloat identity[16];
-        GLfloat tmp[16];
+        mat4 identity;
 };
