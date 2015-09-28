@@ -83,6 +83,8 @@ mat4 getPProjMat(float fov, float aspect, float znear, float zfar) {
     mat.b = vec4(0.0f, h, 0.0f, 0.0f);
     mat.c = vec4(0.0f, 0.0f, q, -1.0f);
     mat.d = vec4(0.0f, 0.0f, qn, 0.0f);
+    
+    return mat;
 }
 
 void getXRotMat(float* mat, float a) {
