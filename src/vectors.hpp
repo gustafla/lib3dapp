@@ -5,7 +5,7 @@
  *    YES, I know, should've used templates but I'm not feeling like learning new things today.
  */
 
-struct vec2 { //C++ structs get types without typedef
+struct vec2 {
     float x;
     float y;
     vec2();

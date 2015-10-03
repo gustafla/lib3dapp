@@ -1,7 +1,7 @@
 #pragma once
 
 #include "window.hpp"
-#include "static_object.hpp"
+#include "resources.hpp"
 #include "shader.hpp"
 #include "mvp.hpp"
 
@@ -11,9 +11,10 @@ class Game {
         void draw();
         bool isRunning();
     private:
+        Resources resources;
+    
         Window& window;
         bool running;
-        StaticObject* triangle;
         Shader shader;
         mat4 projection;
         MVP* mvp;

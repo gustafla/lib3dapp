@@ -11,10 +11,6 @@ running(true),
 window(_window),
 shader(shaderPath("mvp.vert"), shaderPath("color.frag")) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_CULL_FACE);
-    glDisable(GL_DEPTH_TEST);
-    Mesh mesh = loadOBJFile(meshPath("mehu.obj"));
-    triangle = new StaticObject(mesh);
     projection = getPProjMat(45.0f, window.getAspect());
     mvp = new MVP(projection, 0.0, 0.0, -3.0f);
 }
@@ -33,7 +29,9 @@ void Game::draw() {
     mvp->buildModel();
     mvp->buildMVP();
     glUniformMatrix4fv(shader.getUfmHandle("mvp"), 1, GL_FALSE, mvp->getMVPArray());
-    triangle->draw(shader);
+    resources.getStaticModel("mehu.obj").draw(shader);
+    //resources.getStaticModel("revision.obj").draw(shader);
+    //resources.primitives.quad.draw(shader);
     
     window.swapBuffers();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

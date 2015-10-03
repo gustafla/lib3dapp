@@ -1,11 +1,11 @@
-#include "static_object.hpp"
+#include "static_model.hpp"
 #include "graphics.hpp"
 #include <vector>
 #include <cstdlib>
 #include <iostream>
 #include "define.hpp"
 
-StaticObject::StaticObject(Mesh& mesh):
+StaticModel::StaticModel(Mesh& mesh):
 normals(false),
 texcoords(false),
 data(NULL),
@@ -21,7 +21,7 @@ verts(mesh.getPositions().size()) {
     }
     std::vector<GLfloat> array;
     if (!mesh.getAOSArray(array)) {
-        std::cout << "StaticObject " << this << " tried to load an incomplete Mesh: " << &mesh << ".\n";
+        std::cout << "StaticModel " << this << " tried to load an incomplete Mesh: " << &mesh << ".\n";
         std::cout << "Mesh vertices:  " << mesh.getPositions().size() << "\n";
         std::cout << "Mesh texcoords: " << mesh.getTexcoords().size() << "\n";
         std::cout << "Mesh normals:   " << mesh.getNormals().size() << "\n";
@@ -30,11 +30,11 @@ verts(mesh.getPositions().size()) {
     data = new Buffer(&array[0], array.size()*sizeof(GLfloat), GL_STATIC_DRAW);
 }
 
-StaticObject::~StaticObject() {
+StaticModel::~StaticModel() {
     delete data;
 }
 
-void StaticObject::draw(Shader& shader) {
+void StaticModel::draw(Shader& shader) {
     shader.use();
     
     GLuint offset=0;

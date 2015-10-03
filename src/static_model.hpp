@@ -4,10 +4,10 @@
 #include "mesh.hpp"
 #include "shader.hpp"
 
-class StaticObject {
+class StaticModel {
     public:
-        StaticObject(Mesh& mesh);
-        ~StaticObject();
+        StaticModel(Mesh& mesh);
+        ~StaticModel();
         void draw(Shader& shader);
     private:
         GLuint verts;
