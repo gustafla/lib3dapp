@@ -1,3 +1,5 @@
+#ifndef RASPI_BUILD
+
 #include "window.hpp"
 #include <iostream>
 #include <cstdlib>
@@ -102,3 +104,5 @@ void Window::resize(unsigned int w, unsigned int h) {
 void Window::restoreViewport() {
     glViewport(0, 0, width, height);
 }
+
+#endif

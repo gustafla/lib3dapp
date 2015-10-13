@@ -8,10 +8,17 @@
 #include "graphics.hpp"
 
 void cleanup() {
-    SDL_Quit();
+    #ifdef RASPI_BUILD
+        bcm_host_deinit();
+    #else
+        SDL_Quit();
+    #endif
 }
 
 int main(int argc, char* argv[]) {
+    #ifdef RASPI_BUILD
+        bcm_host_init();
+    #endif
     const Config conf(argc, argv);
     Window window(conf);
     atexit(cleanup);

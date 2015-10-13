@@ -17,9 +17,19 @@ class Window {
         void resize(unsigned int w, unsigned int h);
         void restoreViewport();
     private:
-        SDL_Window* window;
-        SDL_GLContext context;
-        SDL_Event events;
+	#ifdef RASPI_BUILD
+            EGLNativeWindowType window;
+            EGLDisplay display;
+            EGLContext context;
+            EGLSurface buffer;
+            struct timeval tTmp;
+            struct timeval startT;
+            float t;
+	#else
+            SDL_Window* window;
+            SDL_GLContext context;
+            SDL_Event events;
+        #endif
         unsigned int width;
         unsigned int height;
         float aspect;

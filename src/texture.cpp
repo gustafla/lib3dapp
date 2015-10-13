@@ -9,9 +9,13 @@ height(image.getHeight()) {
     if (image.hasAlpha() && image.hasColor())
         format = GL_RGBA;
     else if (!image.hasAlpha() && image.hasColor())
-        format = GL_RGB;
+        format = GL_RGB565;
     else if (image.hasAlpha() && !image.hasColor())
-        format = GL_RED;
+        #ifdef RASPI_BUILD
+            format = GL_LUMINANCE;
+        #else
+            format = GL_RED;
+        #endif
     else {
         std::cout << "Texture tried to load a broken RgbaImage!\n";
         exit(ERR_TEXTURE);

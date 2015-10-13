@@ -31,14 +31,15 @@
 //--------------------------------ERROR CODES----------------------------------
 //-----------------------------------------------------------------------------
 
-#define ERR_SUCCESS        0
-#define ERR_WINDOW         1
-#define ERR_PROGRAM        2
-#define ERR_STATIC_OBJECT  3
-#define ERR_OBJ_FILE       4
-#define ERR_TGA_FILE       6
-#define ERR_TEXTURE        5
-#define ERR_SHADER         7
+#define ERR_SUCCESS             0
+#define ERR_WINDOW              1
+#define ERR_PROGRAM             2
+#define ERR_STATIC_OBJECT       3
+#define ERR_OBJ_FILE            4
+#define ERR_TGA_FILE            6
+#define ERR_TEXTURE             5
+#define ERR_SHADER              7
+#define ERR_NO_RPI_DISPLAY_SIZE 8
 
 
 //-----------------------------------------------------------------------------
