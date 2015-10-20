@@ -10,7 +10,7 @@ std::string meshPath(std::string filename) {
     return tmp;
 }
 
-std::string texturePathPath(std::string filename) {
+std::string texturePath(std::string filename) {
     std::string tmp = DATA_DIR;
     tmp+="/";
     tmp+=TEXTURE_DIR;

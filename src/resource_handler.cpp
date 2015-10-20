@@ -1,5 +1,6 @@
 #include "resource_handler.hpp"
 #include "obj_file.hpp"
+#include "tga_file.hpp"
 #include "mesh.hpp"
 #include "rgba_image.hpp"
 #include <iostream>
@@ -9,16 +10,14 @@ StaticModel* ResourceHandler::getStaticModel(std::string name) {
     if (staticModels.find(name) == staticModels.end()) {
         Mesh modelMesh = loadOBJFile(meshPath(name));
         staticModels[name] = new StaticModel(modelMesh);
-        //staticModels.insert(std::pair<std::string, StaticModel*>(name, new StaticModel(modelMesh)));
     }
     return staticModels[name];
 }
 
 Texture* ResourceHandler::getTexture(std::string name) {
     if (textures.find(name) == textures.end()) {
-        //RgbaImage image = loadTGAFile(texturePath(name));
-        //textures[name] = new Texture(image);
-        //staticModels.insert(std::pair<std::string, StaticModel*>(name, new StaticModel(modelMesh)));
+        RgbaImage image = loadTGAFile(texturePath(name));
+        textures[name] = new Texture(image);
     }
     return textures[name];
 }

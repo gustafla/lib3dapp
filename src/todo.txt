@@ -1,6 +1,5 @@
 TODO:
 
-texture loading
 primitives
     - Static struct in global scope?
     - In Graphics that gets instanced in Game?
@@ -20,4 +19,5 @@ Map
         - Or an array for each tile?
             - Should consider baking to a big static mesh
                 - Texturing becomes harder
-- Map editor
+Map editor
+Sensible and clean shader source files!!!!
