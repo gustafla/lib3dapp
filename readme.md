@@ -7,4 +7,4 @@ Planned platforms are:
     - Windows PC (OpenGL 2.1)  
     - Raspberry Pi (ES 2.0)  
     - Computers with OpenGL ES 2.0 support trough X  
-Building is done with make.  
+Building is done with make, for now.  
