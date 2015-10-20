@@ -10,15 +10,6 @@
 #include "util.hpp"
 #include "graphics.hpp"
 
-std::string meshPath(std::string filename) {
-    std::string tmp = DATA_DIR;
-    tmp+="/";
-    tmp+=MESH_DIR;
-    tmp+="/";
-    tmp+=filename;
-    return tmp;
-}
-
 Mesh loadOBJFile(std::string filename) {
     std::vector<std::string> objLine;
     

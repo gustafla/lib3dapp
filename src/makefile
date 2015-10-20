@@ -1,9 +1,10 @@
 # A makefile to build gl-rpg.
 
-SRCS=main.cpp window.cpp game.cpp config.cpp vectors.cpp shader.cpp util.cpp mesh.cpp buffer.cpp static_model.cpp obj_file.cpp matrices.cpp mvp.cpp resources.cpp primitives.cpp
+SRCS=main.cpp window.cpp game.cpp config.cpp vectors.cpp shader.cpp util.cpp mesh.cpp buffer.cpp static_model.cpp obj_file.cpp matrices.cpp mvp.cpp resource_handler.cpp primitives.cpp rgba_image.cpp texture.cpp paths.cpp
 TARGET=game
 OBJS=$(SRCS:.cpp=.o)
-CFLAGS=-g -MMD -MP
+CFLAGS=-O2 -MMD -MP
+debug:CFLAGS=-g -MMD -MP
 INCLUDES=-I./
 LFLAGS=
 LIBS=-lGL -lSDL2 -lGLEW
@@ -11,6 +12,10 @@ LIBS_CUSTOM=
 CC=g++
 
 all: $(TARGET)
+	strip --strip-all $(TARGET)
+	@echo "Finished."
+	
+debug: $(TARGET)
 	@echo "Finished."
 
 $(TARGET): $(OBJS)

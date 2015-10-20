@@ -1,7 +1,7 @@
 #pragma once
 
 #include "window.hpp"
-#include "resources.hpp"
+#include "resource_handler.hpp"
 #include "shader.hpp"
 #include "mvp.hpp"
 
@@ -11,10 +11,10 @@ class Game {
         void draw();
         bool isRunning();
     private:
-        Resources resources;
-    
+        ResourceHandler resources;
         Window& window;
         bool running;
+        
         Shader shader;
         mat4 projection;
         MVP* mvp;

@@ -29,7 +29,7 @@ void Game::draw() {
     mvp->buildModel();
     mvp->buildMVP();
     glUniformMatrix4fv(shader.getUfmHandle("mvp"), 1, GL_FALSE, mvp->getMVPArray());
-    resources.getStaticModel("mehu.obj").draw(shader);
+    resources.getStaticModel("mehu.obj")->draw(shader);
     //resources.getStaticModel("revision.obj").draw(shader);
     //resources.primitives.quad.draw(shader);
     
