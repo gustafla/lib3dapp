@@ -2,7 +2,7 @@
 
 #include "window.hpp"
 #include "resource_handler.hpp"
-#include "shader.hpp"
+#include "program.hpp"
 #include "mvp.hpp"
 
 class Game {
@@ -15,7 +15,7 @@ class Game {
         Window& window;
         bool running;
         
-        Shader shader;
+        Program shader;
         mat4 projection;
         MVP* mvp;
 };

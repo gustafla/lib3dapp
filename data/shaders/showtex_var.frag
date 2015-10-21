@@ -20,7 +20,7 @@ This file is part of Low Quality is the Future.
 precision highp float;
 #endif
 
-varying vec2 texpos;
+varying vec2 texcoord;
 uniform sampler2D iChannel0;
 
 void main() {

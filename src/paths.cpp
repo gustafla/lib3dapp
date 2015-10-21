@@ -18,3 +18,12 @@ std::string texturePath(std::string filename) {
     tmp+=filename;
     return tmp;
 }
+
+std::string shaderPath(std::string name) {
+    std::string tmp = DATA_DIR;
+    tmp += "/";
+    tmp += SHADER_DIR;
+    tmp += "/";
+    tmp += name;
+    return tmp;
+}

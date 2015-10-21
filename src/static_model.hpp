@@ -2,13 +2,13 @@
 
 #include "buffer.hpp"
 #include "mesh.hpp"
-#include "shader.hpp"
+#include "program.hpp"
 
 class StaticModel {
     public:
         StaticModel(Mesh& mesh);
         ~StaticModel();
-        void draw(Shader& shader);
+        void draw(Program& shader);
     private:
         GLuint verts;
         bool texcoords;

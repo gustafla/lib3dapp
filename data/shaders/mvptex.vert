@@ -22,7 +22,7 @@ precision highp float;
 
 attribute vec4 a_position;
 attribute vec2 a_texcoord;
-varying vec2 texpos;
+varying vec2 texcoord;
 uniform mat4 mvp;
 
 void main() {

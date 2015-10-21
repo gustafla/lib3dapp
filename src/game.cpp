@@ -36,7 +36,7 @@ void Game::draw() {
     mvp->buildModel();
     mvp->buildMVP();
     glUniformMatrix4fv(shader.getUfmHandle("mvp"), 1, GL_FALSE, mvp->getMVPArray());
-    resources.getStaticModel("cube_tex_nm.obj")->draw(shader);
+    resources.getStaticModel("cube_tex.obj")->draw(shader);
     
     window.swapBuffers();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

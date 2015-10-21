@@ -34,7 +34,7 @@ StaticModel::~StaticModel() {
     delete data;
 }
 
-void StaticModel::draw(Shader& shader) {
+void StaticModel::draw(Program& shader) {
     shader.use();
     
     GLuint offset=0;

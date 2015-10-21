@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include "mesh.hpp"
-#include "shader.hpp"
+#include "program.hpp"
 #include "static_model.hpp"
 #include "texture.hpp"
 #include "primitives.hpp"
