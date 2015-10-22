@@ -22,12 +22,13 @@ Shader::Shader(std::string filename) {
         std::cout << "Shader couldn't load file " << filename << std::endl;
     }
     
-    if (!(handle = glCreateShader(type))) {
-        std::cout "Shader couldn't create a new shader object for " << filename << ".\n";
+    if ((handle = glCreateShader(type)) == 0) {
+        std::cout << "Shader couldn't create a new shader object for " << filename << ".\n";
         exit(ERR_SHADER);
     }
     
-    glShaderSource(handle, 1, source.c_str(), NULL);
+    const char* sourcePtr = source.c_str();
+    glShaderSource(handle, 1, &sourcePtr, NULL);
     glCompileShader(handle);
 
     GLint compiled;
@@ -44,7 +45,7 @@ Shader::Shader(std::string filename) {
             std::cout << infoLog << std::endl;
             free(infoLog);
         }
-        glDeleteShader(shader);
+        glDeleteShader(handle);
     }
 }
 

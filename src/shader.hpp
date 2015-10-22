@@ -10,4 +10,4 @@ class Shader {
         GLuint getHandle();
     private:
         GLuint handle;
-}
+};
