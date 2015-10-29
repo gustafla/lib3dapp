@@ -4,7 +4,9 @@
 #include <iostream>
 #include <cstdlib>
 
-Shader::Shader(std::string filename) {
+Shader::Shader(std::string filename):
+handle(0),
+name(filename) {
     GLuint type = GL_VERTEX_SHADER;
     std::size_t found = filename.find_last_of(".");
     std::string extension = filename.substr(found+1);
@@ -23,7 +25,7 @@ Shader::Shader(std::string filename) {
     }
     
     if ((handle = glCreateShader(type)) == 0) {
-        std::cout << "Shader couldn't create a new shader object for " << filename << ".\n";
+        std::cout << "Shader couldn't create a new shader object for " << filename << std::endl;
         exit(ERR_SHADER);
     }
     
@@ -55,4 +57,8 @@ GLuint Shader::getHandle() {
 
 Shader::~Shader() {
     glDeleteShader(handle);
+}
+
+std::string Shader::getName() {
+    return name;
 }

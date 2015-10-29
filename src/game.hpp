@@ -16,6 +16,8 @@ class Game {
         bool running;
         
         Program shader;
+        Shader vertexShader;
+        Shader fragmentShader;
         mat4 projection;
         MVP* mvp;
 };

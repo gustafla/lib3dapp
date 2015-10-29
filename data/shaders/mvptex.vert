@@ -26,6 +26,6 @@ varying vec2 texcoord;
 uniform mat4 mvp;
 
 void main() {
-    texpos = a_texcoord;
+    texcoord = a_texcoord;
     gl_Position = mvp * a_position;
 }

@@ -9,7 +9,9 @@
 Game::Game(Window& _window):
 running(true),
 window(_window),
-shader(shaderPath("mvptex.vert"), shaderPath("showtex_var.frag")) {
+vertexShader(shaderPath("mvptex.vert")),
+fragmentShader(shaderPath("showtex_var.frag")),
+shader(vertexShader, fragmentShader) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     projection = getPProjMat(45.0f, window.getAspect());
     mvp = new MVP(projection, 0.0, 0.0, -5.0f);
