@@ -4,7 +4,7 @@
 
 class Buffer {
     public:
-        Buffer(GLfloat* data, GLuint size, GLuint hint=GL_STATIC_DRAW);
+        Buffer(GLfloat* data, GLuint size, GLenum hint=GL_STATIC_DRAW);
         Buffer();
         ~Buffer();
         void bind();

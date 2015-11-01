@@ -8,6 +8,7 @@
 #include "static_model.hpp"
 #include "texture.hpp"
 #include "primitives.hpp"
+#include "graphics.hpp"
 
 /* STD::MAP MIGHT BE SLOW, CONSIDER REPLACING */
 

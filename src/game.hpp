@@ -15,9 +15,7 @@ class Game {
         Window& window;
         bool running;
         
-        Program shader;
-        Shader vertexShader;
-        Shader fragmentShader;
+        Program* shaderProgram;
         mat4 projection;
         MVP* mvp;
 };

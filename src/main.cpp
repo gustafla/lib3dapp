@@ -4,6 +4,7 @@
 #include "game.hpp"
 #include "vectors.hpp"
 #include <vector>
+#include "graphics.hpp"
 
 int main(int argc, char* argv[]) {
     const Config conf(argc, argv);
@@ -23,6 +24,8 @@ int main(int argc, char* argv[]) {
             frames=0;
             tLast=window.getTime();
         }
+        
+        check();
     }
 
     return 0;
