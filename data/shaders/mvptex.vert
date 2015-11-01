@@ -21,7 +21,6 @@ precision highp float;
 #endif
 
 attribute vec4 a_position;
-attribute vec4 a_normal;
 attribute vec2 a_texcoord;
 varying vec2 texcoord;
 uniform mat4 mvp;

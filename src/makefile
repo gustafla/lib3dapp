@@ -11,6 +11,11 @@ LIBS=-lGL -lSDL2 -lGLEW
 LIBS_CUSTOM=
 CC=g++
 
+raspi:CFLAGS=-O2 -MMD -MP -DRASPI_BUILD
+raspi:INCLUDES=-I/opt/vc/include/ -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux -I/opt/vc/src/hello_pi/libs/ilclient -I/opt/vc/src/hello_pii/libs/vgfont -I./
+raspi:LFLAGS=-L/opt/vc/lib
+raspi:LIBS=-lGLESv2 -lEGL -lbcm_host -lSDL2
+
 all: $(TARGET)
 	strip --strip-all $(TARGET)
 	@echo "Finished."
@@ -18,9 +23,11 @@ all: $(TARGET)
 debug: $(TARGET)
 	@echo "Finished."
 
+raspi: $(TARGET)
+	@echo "Finished."
+
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(TARGET) $(OBJS) $(LFLAGS) $(LIBS) $(LIBS_CUSTOM)
-#	strip --strip-all $(TARGET)
 
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

@@ -1,7 +1,15 @@
 #pragma once
 
+#ifdef RASPI_BUILD
+#include "bcm_host.h"
+#include "EGL/egl.h"
+#include "EGL/eglext.h"
+#include "GLES2/gl2.h"
+#else
 #include <GL/glew.h>
 #include <GL/gl.h>
+#endif
+
 #include <SDL2/SDL.h>
 #include <string>
 
