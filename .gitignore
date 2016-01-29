@@ -2,6 +2,7 @@
 
 3dapp
 game
+*.a
 
 
 # Build intermediate files

@@ -4,7 +4,9 @@
 #include "define.hpp"
 #include <iostream>
 #include <stdint.h>
-#include <bcm_host.h>
+#ifdef RASPI_BUILD
+    #include <bcm_host.h>
+#endif
 
 Config::Config(int argc, char** argv):
 fullscreen(false),
