@@ -6,6 +6,8 @@
 #include "mvp.hpp"
 #include "framebuffer.hpp"
 
+extern StaticModel quad;
+
 class Application {
     public:
         Application(Window& _window);
@@ -20,6 +22,5 @@ class Application {
         Program* ppProgram;
         mat4 projection;
         MVP* mvp;
-        StaticModel* quad;
         Framebuffer ppBuf;
 };

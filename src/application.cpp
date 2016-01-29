@@ -5,12 +5,12 @@
 #include <cmath>
 #include <iostream>
 #include <cmath>
-#include "quad.hpp"
+#include "geo_primitives.hpp"
 
 Application::Application(Window& _window):
 running(true),
 window(_window),
-ppBuf(_window.getWidth(), _window.getHeight()/32) {
+ppBuf(_window.getWidth(), _window.getHeight()) {
     Shader vertexShader(shaderPath("mvptex.vert"));
     Shader fragmentShader(shaderPath("showtex_var.frag"));
     shaderProgram = new Program(vertexShader, fragmentShader);
@@ -18,9 +18,6 @@ ppBuf(_window.getWidth(), _window.getHeight()/32) {
     Shader ppvertexShader(shaderPath("simple.vert"));
     Shader ppfragmentShader(shaderPath("wave.frag"));
     ppProgram = new Program(ppvertexShader, ppfragmentShader);
-    
-    Mesh quadMesh = buildQuadMesh();
-    quad = new StaticModel(quadMesh);
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     check();
@@ -72,7 +69,7 @@ void Application::draw() {
     ppProgram->use();
     glUniform1f(ppProgram->getUfmHandle("iGlobalTime"), window.getTime());
     ppBuf.getTexture().bindToUnit(0);
-    quad->draw(*ppProgram);
+    GeoPrimitives::singleton().quad.draw(*ppProgram);
     
     window.swapBuffers();
     check();

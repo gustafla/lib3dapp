@@ -1,4 +1,4 @@
-#include "quad.hpp"
+#include "geo_quad.hpp"
 
 Mesh buildQuadMesh() {
     Mesh mesh;
