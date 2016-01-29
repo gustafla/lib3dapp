@@ -4,19 +4,25 @@
 #include "application.hpp"
 #include "vectors.hpp"
 #include <vector>
+#include <cstdlib>
 #include "graphics.hpp"
+
+void cleanup() {
+    SDL_Quit();
+}
 
 int main(int argc, char* argv[]) {
     const Config conf(argc, argv);
     Window window(conf);
-    Application game(window);
+    atexit(cleanup);
+    Application testApp(window);
 
     float frames=0;
     float tLast=0;
     const float TIME=5.0f;
 
-    while(game.isRunning()) {
-        game.draw();
+    while(testApp.isRunning()) {
+        testApp.draw();
         
         frames+=1;
         if (tLast+TIME < window.getTime()) {

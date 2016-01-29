@@ -2,7 +2,9 @@
 #include <iostream>
 #include "define.hpp"
 
-Texture::Texture(RgbaImage& image) {
+Texture::Texture(RgbaImage& image):
+width(image.getWidth()),
+height(image.getHeight()) {
     GLuint format;
     if (image.hasAlpha() && image.hasColor())
         format = GL_RGBA;
@@ -25,11 +27,36 @@ Texture::Texture(RgbaImage& image) {
     std::cout << "Texture loaded. " << format << " " << image.getWidth() << " " << image.getHeight() << " " << (image.hasAlpha() ? "alpha" : "no alpha") << std::endl;
 }
 
+Texture::Texture(GLuint w, GLuint h):
+width(w),
+height(h) {
+    glActiveTexture(GL_TEXTURE0);
+    glGenTextures(1, &handle);
+    glBindTexture(GL_TEXTURE_2D, handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+}
+
 Texture::~Texture() {
     glDeleteTextures(1, &handle);
+}
+
+GLuint Texture::getHandle() {
+    return handle;
 }
 
 void Texture::bindToUnit(GLuint unit) {
     glActiveTexture(GL_TEXTURE0+unit);
     glBindTexture(GL_TEXTURE_2D, handle);
+}
+
+GLuint Texture::getWidth() {
+    return width;
+}
+
+GLuint Texture::getHeight() {
+    return height;
 }

@@ -5,11 +5,11 @@
 //--------------------------------VIDEO & WINDOW-------------------------------
 //-----------------------------------------------------------------------------
 
-#define GAME_NAME "RPG test"
+#define APPLICATION_NAME "test"
 #ifdef DEBUG
-    #define GAME_VERSION "(debug build)"
+    #define APPLICATION_VERSION "(debug build)"
 #else
-    #define GAME_VERSION "alpha"
+    #define APPLICATION_VERSION "alpha"
 #endif
 #define SCREEN_W 800
 #define SCREEN_H 600

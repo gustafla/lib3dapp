@@ -1,19 +1,6 @@
-#include "primitives.hpp"
-#include "vectors.hpp"
+#include "quad.hpp"
 
-Primitives::Primitives():
-quadMesh(buildQuadMesh()),
-quad(quadMesh) {
-    
-}
-
-/*Mesh buildCubeMesh() {
-    Mesh mesh;
-    //TODO
-    return mesh;
-}*/
-
-Mesh Primitives::buildQuadMesh() {
+Mesh buildQuadMesh() {
     Mesh mesh;
     mesh.pushPosition(vec4(-1.0, -1.0,  0.0,  1.0));
     mesh.pushPosition(vec4( 1.0, -1.0,  0.0,  1.0));

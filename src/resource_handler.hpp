@@ -7,7 +7,6 @@
 #include "program.hpp"
 #include "static_model.hpp"
 #include "texture.hpp"
-#include "primitives.hpp"
 #include "graphics.hpp"
 
 /* STD::MAP MIGHT BE SLOW, CONSIDER REPLACING */
@@ -18,8 +17,6 @@ class ResourceHandler {
         Texture* getTexture(std::string name);
         void freeStaticModels();
         void freeTextures();
-        
-        //const Primitives primitives;
         
     private:
         std::map<std::string, StaticModel*> staticModels;

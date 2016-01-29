@@ -4,6 +4,7 @@
 #include "resource_handler.hpp"
 #include "program.hpp"
 #include "mvp.hpp"
+#include "framebuffer.hpp"
 
 class Application {
     public:
@@ -16,6 +17,9 @@ class Application {
         bool running;
         
         Program* shaderProgram;
+        Program* ppProgram;
         mat4 projection;
         MVP* mvp;
+        StaticModel* quad;
+        Framebuffer ppBuf;
 };

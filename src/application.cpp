@@ -5,13 +5,22 @@
 #include <cmath>
 #include <iostream>
 #include <cmath>
+#include "quad.hpp"
 
 Application::Application(Window& _window):
 running(true),
-window(_window) {
+window(_window),
+ppBuf(_window.getWidth(), _window.getHeight()/32) {
     Shader vertexShader(shaderPath("mvptex.vert"));
     Shader fragmentShader(shaderPath("showtex_var.frag"));
     shaderProgram = new Program(vertexShader, fragmentShader);
+    
+    Shader ppvertexShader(shaderPath("simple.vert"));
+    Shader ppfragmentShader(shaderPath("wave.frag"));
+    ppProgram = new Program(ppvertexShader, ppfragmentShader);
+    
+    Mesh quadMesh = buildQuadMesh();
+    quad = new StaticModel(quadMesh);
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     check();
@@ -27,6 +36,11 @@ window(_window) {
     check();
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     check();
+    
+    ppProgram->use();
+    glUniform1i(ppProgram->getUfmHandle("iChannel0"), 0);
+    glUniform2f(ppProgram->getUfmHandle("iResolution"), window.getWidth(), window.getHeight());
+    glUniform1f(ppProgram->getUfmHandle("iGlobalTime"), window.getTime());
 }
 
 bool Application::isRunning() {
@@ -37,7 +51,8 @@ void Application::draw() {
     resources.getTexture("test.tga")->bindToUnit(0);
     check();
     projection = getPProjMat(45.0, window.getAspect());
-    window.bindBuffer();
+    ppBuf.bind();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     check();
     glClearColor(sin(window.getTime()*M_PI)*0.5+0.5, 0.0, 0.0, 1.0);
     check();
@@ -52,7 +67,13 @@ void Application::draw() {
     resources.getStaticModel("cube_tex.obj")->draw(*shaderProgram);
     check();
     
-    window.swapBuffers();
+    window.bindFramebuffer();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    ppProgram->use();
+    glUniform1f(ppProgram->getUfmHandle("iGlobalTime"), window.getTime());
+    ppBuf.getTexture().bindToUnit(0);
+    quad->draw(*ppProgram);
+    
+    window.swapBuffers();
     check();
 }

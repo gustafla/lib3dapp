@@ -10,9 +10,9 @@ height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
     int err;
     char caption[80];
-    strcpy(caption, GAME_NAME);
+    strcpy(caption, APPLICATION_NAME);
     strcat(caption, " ");
-    strcat(caption, GAME_VERSION);
+    strcat(caption, APPLICATION_VERSION);
 
 
     if ((err=SDL_Init(SDL_INIT_EVERYTHING)) != 0) {
@@ -74,8 +74,9 @@ float Window::getTime() {
     return (1.0f*SDL_GetTicks())/1000.0f;
 }
 
-void Window::bindBuffer() {
+void Window::bindFramebuffer() {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    restoreViewport();
 }
 
 unsigned int Window::getWidth() {
@@ -96,4 +97,8 @@ void Window::resize(unsigned int w, unsigned int h) {
     aspect=((float)w)/((float)h);
     SDL_SetWindowSize(window, w, h);
     glViewport(0, 0, w, h);
+}
+
+void Window::restoreViewport() {
+    glViewport(0, 0, width, height);
 }

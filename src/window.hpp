@@ -9,12 +9,13 @@ class Window {
         ~Window();
         void close();
         void swapBuffers();
-        void bindBuffer();
+        void bindFramebuffer();
         float getTime();
         unsigned int getWidth();
         unsigned int getHeight();
         float getAspect();
         void resize(unsigned int w, unsigned int h);
+        void restoreViewport();
     private:
         SDL_Window* window;
         SDL_GLContext context;
