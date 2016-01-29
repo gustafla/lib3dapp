@@ -5,9 +5,9 @@
 #include "program.hpp"
 #include "mvp.hpp"
 
-class Game {
+class Application {
     public:
-        Game(Window& _window);
+        Application(Window& _window);
         void draw();
         bool isRunning();
     private:

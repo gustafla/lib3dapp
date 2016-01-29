@@ -1,7 +1,7 @@
 #include <iostream>
 #include "window.hpp"
 #include "config.hpp"
-#include "game.hpp"
+#include "application.hpp"
 #include "vectors.hpp"
 #include <vector>
 #include "graphics.hpp"
@@ -9,7 +9,7 @@
 int main(int argc, char* argv[]) {
     const Config conf(argc, argv);
     Window window(conf);
-    Game game(window);
+    Application game(window);
 
     float frames=0;
     float tLast=0;

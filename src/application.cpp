@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "application.hpp"
 #include "graphics.hpp"
 #include "vectors.hpp"
 #include "obj_file.hpp"
@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cmath>
 
-Game::Game(Window& _window):
+Application::Application(Window& _window):
 running(true),
 window(_window) {
     Shader vertexShader(shaderPath("mvptex.vert"));
@@ -29,11 +29,11 @@ window(_window) {
     check();
 }
 
-bool Game::isRunning() {
+bool Application::isRunning() {
     return running;
 }
 
-void Game::draw() {
+void Application::draw() {
     resources.getTexture("test.tga")->bindToUnit(0);
     check();
     projection = getPProjMat(45.0, window.getAspect());

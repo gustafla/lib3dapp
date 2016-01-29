@@ -11,11 +11,11 @@ texcoords(false),
 data(NULL),
 stride(SIZE_POS),
 verts(mesh.getPositions().size()) {
-    if (mesh.getNormals().size()) {
+    if (mesh.getNormals().size() > 0) {
         normals = true;
         stride += SIZE_NORMAL;
     }
-    if (mesh.getTexcoords().size()) {
+    if (mesh.getTexcoords().size() > 0) {
         texcoords = true;
         stride += SIZE_TEXCOORD;
     }
@@ -45,6 +45,7 @@ void StaticModel::draw(Program& shader) {
     check();
     
     glEnableVertexAttribArray(shader.getAtrHandle(NAME_POS));
+    std::cout << shader.getAtrHandle(NAME_POS) << std::endl;
     check();
     glVertexAttribPointer(shader.getAtrHandle(NAME_POS), SIZE_POS, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
     check();
@@ -52,6 +53,7 @@ void StaticModel::draw(Program& shader) {
     
     if (texcoords) {
         glEnableVertexAttribArray(shader.getAtrHandle(NAME_TEXCOORD));
+        std::cout << shader.getAtrHandle(NAME_TEXCOORD) << std::endl;
         check();
         glVertexAttribPointer(shader.getAtrHandle(NAME_TEXCOORD), SIZE_TEXCOORD, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
         check();
@@ -60,6 +62,7 @@ void StaticModel::draw(Program& shader) {
     
     if (normals) {
         glEnableVertexAttribArray(shader.getAtrHandle(NAME_NORMAL));
+        std::cout << shader.getAtrHandle(NAME_NORMAL) << std::endl;
         check();
         glVertexAttribPointer(shader.getAtrHandle(NAME_NORMAL), SIZE_NORMAL, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
         check();

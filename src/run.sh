@@ -1,4 +1,4 @@
 #!/bin/bash
-cp game ../
+cp 3dapp ../
 cd ../
-./game
+./3dapp

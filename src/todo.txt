@@ -7,17 +7,5 @@ primitives
             - YES!
                 - But free unneeded and reload between scenes to save GPU memory
 text string drawing
-MapObject class
-    - size
-    - pointer to mesh etc
-    - solid
-    - objects class with an array of every object in game
-        - "Object IDs"
 Shared resources?
-Map
-    - Is a list of each object
-        - Or an array for each tile?
-            - Should consider baking to a big static mesh
-                - Texturing becomes harder
-Map editor
 Sensible and clean shader source files!!!!
