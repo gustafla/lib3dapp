@@ -20,22 +20,22 @@ class _GeoPrimitivesMeshes {
 };
 
 class GeoPrimitives {
+    private:
+        GeoPrimitives():
+        meshes(new _GeoPrimitivesMeshes()),
+        quad(meshes->quad),
+        triangleEquilateral(meshes->triangleEquilateral) {
+            delete meshes;
+        }
+        
+        _GeoPrimitivesMeshes* meshes;
+    
     public:
+        static GeoPrimitives& singleton() {
+            static GeoPrimitives instance;
+            return instance;
+        }
     
-    GeoPrimitives():
-    meshes(new _GeoPrimitivesMeshes()),
-    quad(meshes->quad),
-    triangleEquilateral(meshes->triangleEquilateral) {
-        delete meshes;
-    }
-    
-    static GeoPrimitives& singleton() {
-        static GeoPrimitives instance;
-        return instance;
-    }
-    
-    _GeoPrimitivesMeshes* meshes;
-    
-    StaticModel quad;
-    StaticModel triangleEquilateral;
+        StaticModel quad;
+        StaticModel triangleEquilateral;
 };
