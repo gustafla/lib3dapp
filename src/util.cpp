@@ -5,11 +5,11 @@
 #include <iostream>
 #include <string>
 
-bool isdigits(std::string &s) {
+bool isdigits(std::string s) {
     return s.find_first_not_of("0123456789") == std::string::npos;
 }
 
-bool isfloat(std::string &s) {
+bool isfloat(std::string s) {
     return s.find_first_not_of("0123456789.") == std::string::npos;
 }
 

@@ -2,10 +2,11 @@
 
 #include "config.hpp"
 #include "graphics.hpp"
+#include <string>
 
 class Window {
     public:
-        Window(const Config& conf);
+        Window(const Config& conf, std::string caption="");
         ~Window();
         void close();
         void swapBuffers();
@@ -17,7 +18,7 @@ class Window {
         void resize(unsigned int w, unsigned int h);
         void restoreViewport();
     private:
-	#ifdef RASPI_BUILD
+        #ifdef RASPI_BUILD
             EGLNativeWindowType window;
             EGLDisplay display;
             EGLContext context;
@@ -25,7 +26,7 @@ class Window {
             struct timeval tTmp;
             struct timeval startT;
             float t;
-	#else
+        #else
             SDL_Window* window;
             SDL_GLContext context;
             SDL_Event events;

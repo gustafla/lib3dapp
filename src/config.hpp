@@ -7,7 +7,8 @@ class Config {
         bool fullscreen;
         unsigned int w;
         unsigned int h;
-
+        unsigned int display;
+        
     private:
         void parseArgs(int argc, char** argv);
 };

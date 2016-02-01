@@ -5,15 +5,8 @@
 //--------------------------------VIDEO & WINDOW-------------------------------
 //-----------------------------------------------------------------------------
 
-#define APPLICATION_NAME "test"
-#ifdef DEBUG
-    #define APPLICATION_VERSION "(debug build)"
-#else
-    #define APPLICATION_VERSION "alpha"
-#endif
 #define SCREEN_W 800
 #define SCREEN_H 600
-
 
 //-----------------------------------------------------------------------------
 //--------------------------------DIRECTORIES----------------------------------
@@ -39,7 +32,9 @@
 #define ERR_TGA_FILE            6
 #define ERR_TEXTURE             5
 #define ERR_SHADER              7
-#define ERR_NO_RPI_DISPLAY_SIZE 8
+#define ERR_NO_DISPLAY_SIZE     8
+#define ERR_INVALID_ARGUMENT    9
+#define ERR_WTF                 10
 
 
 //-----------------------------------------------------------------------------

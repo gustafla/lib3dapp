@@ -8,10 +8,12 @@
 #include "define.hpp"
 #include <sys/time.h>
 
-Window::Window(const Config& conf):
+Window::Window(const Config& conf, std::string caption):
 width(conf.w),
 height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
+    std::cout << caption << std::endl;
+    
     EGLint attribList[] = {
         EGL_RED_SIZE,       5,
         EGL_GREEN_SIZE,     6,
