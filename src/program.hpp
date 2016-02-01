@@ -10,7 +10,7 @@ std::string shaderPath(std::string name);
 class Program {
     public:
         Program();
-        Program(Shader& vertexShader, Shader& fragmentShader);
+        Program(Shader vertexShader, Shader fragmentShader);
         ~Program();
         GLuint getHandle();
         GLuint getUfmHandle(std::string);

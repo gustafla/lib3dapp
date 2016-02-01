@@ -2,7 +2,7 @@
 #include <iostream>
 #include "define.hpp"
 
-Texture::Texture(RgbaImage& image):
+Texture::Texture(RgbaImage image):
 width(image.getWidth()),
 height(image.getHeight()) {
     GLuint format;

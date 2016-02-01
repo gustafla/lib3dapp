@@ -5,7 +5,7 @@
 
 class Texture {
     public:
-        Texture(RgbaImage& image);
+        Texture(RgbaImage image);
         Texture(GLuint w, GLuint h);
         ~Texture();
         

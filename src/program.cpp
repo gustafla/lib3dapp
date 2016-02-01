@@ -5,7 +5,7 @@
 #include "define.hpp"
 #include "shader.hpp"
 
-Program::Program(Shader& vertexShader, Shader& fragmentShader):
+Program::Program(Shader vertexShader, Shader fragmentShader):
 handle(0) {
     GLint linked;
     

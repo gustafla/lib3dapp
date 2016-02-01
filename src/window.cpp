@@ -39,6 +39,8 @@ aspect(((float)conf.w)/((float)conf.h)) {
 
     SDL_GL_SetSwapInterval(1);
     
+    SDL_ShowCursor(0);
+    
     glViewport(0, 0, conf.w, conf.h);
 }
 

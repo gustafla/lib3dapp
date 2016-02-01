@@ -6,7 +6,7 @@
 
 class StaticModel {
     public:
-        StaticModel(Mesh& mesh);
+        StaticModel(Mesh mesh);
         ~StaticModel();
         void draw(Program& shader);
     private:
