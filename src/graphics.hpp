@@ -20,3 +20,5 @@
 /* Assert? Who needs that thing? :DDDD */
 
 void checkGl(std::string file, int line);
+void initializeGraphics();
+void cleanupGraphics();

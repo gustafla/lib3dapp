@@ -33,3 +33,23 @@ void checkGl(std::string file, int line) {
         }
     #endif
 }
+
+void cleanupGraphics() {
+    Demo::destroySingleton();
+    #ifdef RASPI_BUILD
+        bcm_host_deinit();
+    #else
+        SDL_Quit();
+    #endif
+}
+
+void initializeGraphics() {
+    #ifdef RASPI_BUILD
+        bcm_host_init();
+    #else
+        if ((SDL_Init(SDL_INIT_EVERYTHING)) != 0) {
+            std::cout << "SDL failed to initialize.\n";
+            exit(ERR_WTF);
+        }
+    #endif
+}
