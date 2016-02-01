@@ -1,6 +1,7 @@
 #include "graphics.hpp"
 #include <cstdlib>
 #include <iostream>
+#include "define.hpp"
 
 void checkGl(std::string file, int line) {
     #ifdef DEBUG_BUILD
@@ -35,7 +36,6 @@ void checkGl(std::string file, int line) {
 }
 
 void cleanupGraphics() {
-    Demo::destroySingleton();
     #ifdef RASPI_BUILD
         bcm_host_deinit();
     #else
