@@ -30,9 +30,11 @@ height(image.getHeight()) {
     
     //Needed to avoid issues with weird image sizes
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-    glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
-    glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+    #ifndef RASPI_BUILD
+        glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+        glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+        glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+    #endif
     
     glTexImage2D(GL_TEXTURE_2D, 0, format, image.getWidth(), image.getHeight(), 0, format, GL_UNSIGNED_BYTE, image.getArray());
     std::cout << "Texture loaded. " << format << " " << image.getWidth() << " " << image.getHeight() << " " << (image.hasAlpha() ? "alpha" : "no alpha") << std::endl;
