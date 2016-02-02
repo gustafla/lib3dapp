@@ -1,23 +1,26 @@
 #include "rgba_image.hpp"
+#include <iostream>
 
-RgbaImage::RgbaImage(unsigned int w, unsigned int h, bool c, bool a):
+RgbaImage::RgbaImage(unsigned int w, unsigned int h, unsigned int s, bool c, bool a):
 color(c),
 alpha(a),
 width(w),
-height(h) {
-    
+height(h),
+size(s) {
+     image = new GLubyte[s];
+}
+
+RgbaImage::~RgbaImage() {
+    std::cout << "RgbaImage destroyed.\n";
+    delete[] image;
 }
 
 GLubyte* RgbaImage::getArray() {
-    return &image[0];
+    return image;
 }
 
 unsigned int RgbaImage::getSize() {
-    return image.size();
-}
-
-void RgbaImage::pushByte(GLubyte byte) {
-    image.push_back(byte);
+    return size;
 }
 
 bool RgbaImage::hasColor() {

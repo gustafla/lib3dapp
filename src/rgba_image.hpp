@@ -5,10 +5,10 @@
 
 class RgbaImage {
     public:
-        RgbaImage(unsigned int w, unsigned int h, bool c=true, bool a=true);
+        RgbaImage(unsigned int w, unsigned int h, unsigned int s, bool c=true, bool a=true);
+        ~RgbaImage();
         GLubyte* getArray();
         unsigned int getSize();
-        void pushByte(GLubyte byte);
         bool hasColor();
         bool hasAlpha();
         unsigned int getWidth();
@@ -18,5 +18,7 @@ class RgbaImage {
         unsigned int height;
         bool color;
         bool alpha;
-        std::vector<GLubyte> image;
+        
+        GLubyte* image;
+        unsigned int size;
 };

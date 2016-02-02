@@ -51,16 +51,17 @@ RgbaImage loadTGAFile(std::string filename) {
     }
     
     pixelCount = width * height;
-    bytespp = bpp/8;
+    bytespp = bpp>>3;
     imageSize = bytespp * pixelCount;
 
-    imageData = (unsigned char*)malloc(imageSize);
+    imageData = new unsigned char[imageSize];
     if (imageData == NULL) {
         errorPrint(filename);
         exit(ERR_TGA_FILE);
     }
 
     if (memcmp(uTGAcompare, formatHeader, sizeof(formatHeader))==0) {   // If TGA uncompressed
+        std::cout << "Uncompressed TGA\n";
         file.read((char*)imageData, imageSize);
         
         if (file.fail()) {
@@ -73,9 +74,10 @@ RgbaImage loadTGAFile(std::string filename) {
             imageData[cswap] ^= imageData[cswap+2];
         }
     } else if (memcmp(cTGAcompare, formatHeader, sizeof(formatHeader))==0) { // If TGA compressed
+        std::cout << "Compressed TGA\n";
         unsigned int curPixel = 0;
         unsigned int curByte = 0;
-        unsigned char* colBuf = (unsigned char*)malloc(bytespp);
+        unsigned char* colBuf = new unsigned char[bytespp];
     
         do {
             unsigned char chunkheader = 0;
@@ -125,17 +127,16 @@ RgbaImage loadTGAFile(std::string filename) {
                 }
             }
         } while (curPixel < pixelCount);
-        delete colBuf;
+        delete[] colBuf;
     } else {
         errorPrint(filename);
         exit(ERR_TGA_FILE);
     }
     file.close();
     
-    RgbaImage image(width, height, true, (bpp==32));
-    for (unsigned int i=0; i<imageSize; i++) {
-        image.pushByte(imageData[i]);
-    }
+    RgbaImage image(width, height, imageSize, true, (bpp==32));
+    memcpy(image.getArray(), imageData, imageSize);
+    delete[] imageData;
     
     return image;
 }

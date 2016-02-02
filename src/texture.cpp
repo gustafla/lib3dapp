@@ -9,7 +9,7 @@ height(image.getHeight()) {
     if (image.hasAlpha() && image.hasColor())
         format = GL_RGBA;
     else if (!image.hasAlpha() && image.hasColor())
-        format = GL_RGB565;
+        format = GL_RGB;
     else if (image.hasAlpha() && !image.hasColor())
         #ifdef RASPI_BUILD
             format = GL_LUMINANCE;
@@ -27,8 +27,16 @@ height(image.getHeight()) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    //Needed to avoid issues with weird image sizes
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+    glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
+    glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
+    
     glTexImage2D(GL_TEXTURE_2D, 0, format, image.getWidth(), image.getHeight(), 0, format, GL_UNSIGNED_BYTE, image.getArray());
     std::cout << "Texture loaded. " << format << " " << image.getWidth() << " " << image.getHeight() << " " << (image.hasAlpha() ? "alpha" : "no alpha") << std::endl;
+    std::cout << "GL_RGBA=" << GL_RGBA << " GL_RGB=" << GL_RGB << std::endl;
 }
 
 Texture::Texture(GLuint w, GLuint h):
