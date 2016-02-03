@@ -29,6 +29,20 @@ mat4 getPProjMat(float fov, float aspect, float znear, float zfar) {
     return mat;
 }
 
+mat4 getOProjMat(float right, float top, float left, float bottom, float near, float far) {
+	mat4 mat;
+			
+	mat.a.x = 2.0f / (right - left);
+	mat.b.y = 2.0f / (top - bottom);
+	mat.c.z = -2.0f / (far - near);
+	mat.d.x = -(right + left  ) / (right - left  );
+	mat.d.y = -(top   + bottom) / (top   - bottom);
+	mat.d.z = -(far   + near  ) / (far   - near  );
+	mat.d.w = 1.0f;
+			
+	return mat;
+}
+
 mat4 getXRotMat(float a) {
     mat4 mat;
     
@@ -163,4 +177,13 @@ mat4 mat4::operator*(const mat4& b) {
     mat4 a = *this;
     a *= b;
     return a;
+}
+
+vec4 mat4::operator*(const vec4& vec) {
+    vec4 product;
+    product.x = vec.x*a.x + vec.y*a.y + vec.z*a.z + vec.w*a.w;
+    product.y = vec.x*b.x + vec.y*b.y + vec.z*b.z + vec.w*b.w;
+    product.z = vec.x*c.x + vec.y*c.y + vec.z*c.z + vec.w*c.w;
+    product.w = vec.x*d.x + vec.y*d.y + vec.z*d.z + vec.w*d.w;
+    return product;
 }

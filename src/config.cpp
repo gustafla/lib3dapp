@@ -45,6 +45,32 @@ void Config::parseArgs(int argc, char** argv) {
                 std::cout << "--display" << errorMessages[0];
                 argErr(argv[i-1]);
             }
+        } else if (strcmp(argv[i], "-w") == 0) {
+            i++;
+            if (i < argc) {
+                if (isdigits(std::string(argv[i]))) {
+                    w = atoi(argv[i]);
+                } else {
+                    std::cout << argv[i] << errorMessages[1] << "-w.\n";
+                    argErr(argv[i-1]);
+                }
+            } else {
+                std::cout << "-w" << errorMessages[0];
+                argErr(argv[i-1]);
+            }
+        } else if (strcmp(argv[i], "-h") == 0) {
+            i++;
+            if (i < argc) {
+                if (isdigits(std::string(argv[i]))) {
+                    h = atoi(argv[i]);
+                } else {
+                    std::cout << argv[i] << errorMessages[1] << "-h.\n";
+                    argErr(argv[i-1]);
+                }
+            } else {
+                std::cout << "-h" << errorMessages[0];
+                argErr(argv[i-1]);
+            }
         } else {
             std::cout << "Unrecognized argument \"" << argv[i] << "\".\n";
             exit(ERR_INVALID_ARGUMENT);
