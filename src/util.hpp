@@ -9,3 +9,4 @@ int countSubstring(const std::string& str, const std::string& sub);
 float max(float n, float m);
 float min(float n, float m);
 float clamp(float n, float a, float b);
+float smoothstep(float edge0, float edge1, float x);

@@ -57,3 +57,10 @@ float min(float n, float m) {
 float clamp(float n, float a, float b) {
     return ((n<a) ? a : ((n>b) ? b : n));
 }
+
+float smoothstep(float edge0, float edge1, float x) { //Stolen from Wikipedia :^)
+    // Scale, bias and saturate x to 0..1 range
+    x = clamp((x - edge0)/(edge1 - edge0), 0.0, 1.0); 
+    // Evaluate polynomial
+    return x*x*(3 - 2*x);
+}
