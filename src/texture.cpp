@@ -4,7 +4,8 @@
 
 Texture::Texture(RgbaImage image):
 width(image.getWidth()),
-height(image.getHeight()) {
+height(image.getHeight()),
+filter(GL_NEAREST) {
     GLuint format;
     if (image.hasAlpha() && image.hasColor())
         format = GL_RGBA;
@@ -25,8 +26,8 @@ height(image.getHeight()) {
     glBindTexture(GL_TEXTURE_2D, handle);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
     
     //Needed to avoid issues with weird image sizes
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -65,6 +66,8 @@ GLuint Texture::getHandle() {
 void Texture::bindToUnit(GLuint unit) {
     glActiveTexture(GL_TEXTURE0+unit);
     glBindTexture(GL_TEXTURE_2D, handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
 }
 
 GLuint Texture::getWidth() {
@@ -73,4 +76,8 @@ GLuint Texture::getWidth() {
 
 GLuint Texture::getHeight() {
     return height;
+}
+
+void Texture::setFilter(GLuint _filter) {
+	filter = _filter;
 }

@@ -3,7 +3,7 @@
 SRCS=window.cpp window_rpi.cpp application.cpp config.cpp vectors.cpp program.cpp util.cpp mesh.cpp buffer.cpp static_model.cpp obj_file.cpp matrices.cpp mvp.cpp resource_handler.cpp geo_quad.cpp geo_triangle_equilateral.cpp rgba_image.cpp texture.cpp paths.cpp tga_file.cpp shader.cpp graphics.cpp framebuffer.cpp renderbuffer.cpp scaling_rectangle.cpp
 TARGET=lib3dapp.a
 OBJS=$(SRCS:.cpp=.o)
-CFLAGS=-O2 -MMD -MP -fPIC
+CFLAGS=-O2 -MMD -MP -fPIC -pg -g
 debug:CFLAGS=-g -MMD -MP -DDEBUG_BUILD
 INCLUDES=-I./
 LFLAGS=

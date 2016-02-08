@@ -8,7 +8,7 @@
 #include "define.hpp"
 #include <sys/time.h>
 
-Window::Window(const Config& conf, std::string caption):
+Window::Window(const Config& conf, std::string caption, vec2 realsize):
 width(conf.w),
 height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
@@ -24,6 +24,11 @@ aspect(((float)conf.w)/((float)conf.h)) {
         EGL_SAMPLE_BUFFERS, 0,
         EGL_NONE
     };
+    
+    if (conf.fullscreen && realsize.y > 0.1f) { //The Pi H/W has a picture scaler
+        width = aspect*realsize.y; //So let's utilize it instead of a shader pass
+        height = realsize.y;
+    }
 
     static EGL_DISPMANX_WINDOW_T nativewindow;
 
@@ -50,8 +55,8 @@ aspect(((float)conf.w)/((float)conf.h)) {
 
     src_rect.x = x;
     src_rect.y = y;
-    src_rect.width = w<<16;
-    src_rect.height = h<<16;
+    src_rect.width = width<<16;
+    src_rect.height = height<<16;
 
     dispman_display = vc_dispmanx_display_open(0);
     dispman_update = vc_dispmanx_update_start(0);
@@ -63,8 +68,8 @@ aspect(((float)conf.w)/((float)conf.h)) {
     dispman_element = vc_dispmanx_element_add(dispman_update, dispman_display, 0, &dst_rect, 0, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, 0, (DISPMANX_TRANSFORM_T)0);
 
     nativewindow.element = dispman_element;
-    nativewindow.width = w;
-    nativewindow.height = h;
+    nativewindow.width = width;
+    nativewindow.height = height;
     vc_dispmanx_update_submit_sync(dispman_update);
     
     window = &nativewindow;
@@ -110,11 +115,9 @@ aspect(((float)conf.w)/((float)conf.h)) {
     buffer = eglBuffer;
     context = eglContext;
 
-    glViewport(0, 0, conf.w, conf.h);
-
-    gettimeofday(&tTmp, NULL);
-    gettimeofday(&startT, NULL);
-    t = 0.0f;
+    restoreViewport();
+    bindFramebuffer();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void Window::close() {
@@ -126,12 +129,18 @@ Window::~Window() {
 
 void Window::swapBuffers() {
     eglSwapBuffers(display, buffer);
-    gettimeofday(&tTmp, NULL);
-    t = static_cast<float>(tTmp.tv_sec - startT.tv_sec + ((tTmp.tv_usec - startT.tv_usec) * 1e-6));
+    
+    SDL_PollEvent(&events);
+
+    if (events.type == SDL_QUIT)
+        exit(ERR_SUCCESS);
+    else if (events.type == SDL_KEYDOWN)
+        if (events.key.keysym.sym == SDLK_ESCAPE)
+            exit(ERR_SUCCESS);
 }
 
 float Window::getTime() {
-    return t;
+    return (1.0f*SDL_GetTicks())/1000.0f;
 }
 
 void Window::bindFramebuffer() {

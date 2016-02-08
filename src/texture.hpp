@@ -15,8 +15,11 @@ class Texture {
         GLuint getWidth();
         GLuint getHeight();
         
+        void setFilter(GLuint _filter=GL_LINEAR);
+        
     private:
         GLuint handle;
         GLuint width;
         GLuint height;
+        GLuint filter;
 };

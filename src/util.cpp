@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "vectors.hpp"
 
 bool isdigits(std::string s) {
     return s.find_first_not_of("0123456789") == std::string::npos;
@@ -63,4 +64,21 @@ float smoothstep(float edge0, float edge1, float x) { //Stolen from Wikipedia :^
     x = clamp((x - edge0)/(edge1 - edge0), 0.0, 1.0); 
     // Evaluate polynomial
     return x*x*(3 - 2*x);
+}
+
+//Templates, again... Well, this works too.
+float mix(float a, float b, float n) {
+    return a*(1-n)+b*n;
+}
+
+vec2 mix(vec2 a, vec2 b, float n) {
+    return a*(1-n)+b*n;
+}
+
+vec3 mix(vec3 a, vec3 b, float n) {
+    return a*(1-n)+b*n;
+}
+
+vec4 mix(vec4 a, vec4 b, float n) {
+    return a*(1-n)+b*n;
 }

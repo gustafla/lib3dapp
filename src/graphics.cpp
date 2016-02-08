@@ -38,14 +38,18 @@ void checkGl(std::string file, int line) {
 void cleanupGraphics() {
     #ifdef RASPI_BUILD
         bcm_host_deinit();
-    #else
-        SDL_Quit();
     #endif
+    SDL_Quit();
 }
 
 void initializeGraphics() {
     #ifdef RASPI_BUILD
         bcm_host_init();
+        if ((SDL_Init(SDL_INIT_TIMER|SDL_INIT_AUDIO|SDL_INIT_VIDEO)) != 0) {
+            std::cout << "SDL failed to initialize.\n";
+            exit(ERR_WTF);
+		}
+		SDL_SetVideoMode(0,0,0,SDL_SWSURFACE); //Null video surface to receive keyboard input
     #else
         if ((SDL_Init(SDL_INIT_EVERYTHING)) != 0) {
             std::cout << "SDL failed to initialize.\n";

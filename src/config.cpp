@@ -71,9 +71,6 @@ void Config::parseArgs(int argc, char** argv) {
                 std::cout << "-h" << errorMessages[0];
                 argErr(argv[i-1]);
             }
-        } else {
-            std::cout << "Unrecognized argument \"" << argv[i] << "\".\n";
-            exit(ERR_INVALID_ARGUMENT);
         }
     }
 

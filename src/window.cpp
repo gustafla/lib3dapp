@@ -6,7 +6,7 @@
 #include "define.hpp"
 #include <cstring>
 
-Window::Window(const Config& conf, std::string caption):
+Window::Window(const Config& conf, std::string caption, vec2 realsize):
 width(conf.w),
 height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
@@ -41,11 +41,13 @@ aspect(((float)conf.w)/((float)conf.h)) {
     
     SDL_ShowCursor(0);
     
-    glViewport(0, 0, conf.w, conf.h);
+    restoreViewport();
+    bindFramebuffer();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void Window::close() {
-    SDL_Quit();
+    SDL_DestroyWindow(window);
 }
 
 Window::~Window() {

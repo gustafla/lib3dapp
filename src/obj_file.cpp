@@ -39,7 +39,7 @@ Mesh loadOBJFile(std::string filename) {
     int a, b, c, d, e, f, g, h, i;
     
     for (int index=0; index<objLine.size(); index++) {
-        if (objLine[index].c_str()[0]=='#' || objLine[index].c_str()[0]=='\n')
+        if (objLine[index].c_str()[0]=='#')
             continue;
         else if (objLine[index].c_str()[0]=='v' && objLine[index].c_str()[1]==' ') { //vertex
             sscanf(objLine[index].c_str(), "v %f %f %f", &tx, &ty, &tz);
@@ -104,7 +104,8 @@ Mesh loadOBJFile(std::string filename) {
             } else //not triangular face
                 std::cout << "loadOBJFile: " << filename << ": Skipped line " << index << ". not a triangular face :(\n";
         } else {
-            std::cout << "loadOBJFile: " << filename << ": Unrecognized: " << objLine[index] << std::endl;
+            if (objLine[index].length())
+                std::cout << "loadOBJFile: " << filename << ": Unrecognized: " << objLine[index] << std::endl;
             continue;
         }
     }

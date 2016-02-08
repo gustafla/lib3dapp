@@ -59,6 +59,7 @@ struct vec4 {
     vec4(float a);
     vec4(float a, float b, float c, float d);
     vec4(const vec4& a);
+    vec4(vec3 a, float d);
     vec4& operator=(vec4 a);
     vec4& operator+=(vec4 a);
     vec4& operator-=(vec4 a);

@@ -5,7 +5,7 @@
 
 class MVP {
     public:
-        MVP(mat4& _projection, GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f, GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f, GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f, GLfloat rx=0.0f, GLfloat ry=0.0f, GLfloat rz=0.0f, GLfloat _scale=1.0f);
+        MVP(mat4 _projection, GLfloat vtx=0.0f, GLfloat vty=0.0f, GLfloat vtz=0.0f, GLfloat vrx=0.0f, GLfloat vry=0.0f, GLfloat vrz=0.0f, GLfloat tx=0.0f, GLfloat ty=0.0f, GLfloat tz=0.0f, GLfloat rx=0.0f, GLfloat ry=0.0f, GLfloat rz=0.0f, GLfloat _scale=1.0f);
         void buildMVP();
         void buildModel();
         void buildView();
@@ -28,7 +28,7 @@ class MVP {
     private:
         mat4 mvp;
     
-        mat4& projection;
+        mat4 projection;
         
         mat4 viewTranslation;
         mat4 viewRotation;

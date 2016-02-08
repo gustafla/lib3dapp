@@ -236,6 +236,13 @@ vec4::vec4(const vec4& a) {
     w=a.w;
 }
 
+vec4::vec4(vec3 a, float d) {
+    x=a.x;
+    y=a.y;
+    z=a.z;
+    w=d;
+}
+
 vec4& vec4::operator=(vec4 a) {
     x=a.x;
     y=a.y;

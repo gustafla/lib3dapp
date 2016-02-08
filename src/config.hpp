@@ -1,5 +1,9 @@
 #pragma once
 
+#include <string>
+
+void argErr(std::string arg);
+
 class Config {
     public:
         Config(int argc, char** argv);
