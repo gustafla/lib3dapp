@@ -48,8 +48,9 @@ void initializeGraphics() {
         if ((SDL_Init(SDL_INIT_TIMER|SDL_INIT_AUDIO|SDL_INIT_VIDEO)) != 0) {
             std::cout << "SDL failed to initialize.\n";
             exit(ERR_WTF);
-		}
-		SDL_SetVideoMode(0,0,0,SDL_SWSURFACE); //Null video surface to receive keyboard input
+        }
+        SDL_SetVideoMode(0,0,0,SDL_SWSURFACE); //Null video surface to receive keyboard input
+        SDL_ShowCursor(0);
     #else
         if ((SDL_Init(SDL_INIT_EVERYTHING)) != 0) {
             std::cout << "SDL failed to initialize.\n";
