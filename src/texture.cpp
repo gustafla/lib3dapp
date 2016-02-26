@@ -81,3 +81,7 @@ GLuint Texture::getHeight() {
 void Texture::setFilter(GLuint _filter) {
 	filter = _filter;
 }
+
+float Texture::getAspect() {
+    return ((1.0f*width)/height);
+}

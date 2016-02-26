@@ -2,15 +2,17 @@
 #include "matrices.hpp"
 #include "util.hpp"
 
-ScalingRectangle::ScalingRectangle(vec2 src, vec2 tgt):
-vbo(NULL) {
+ScalingRectangle::ScalingRectangle(vec2 src, vec2 tgt, float scale, vec2 offset):
+vbo(NULL),
+source(src),
+target(tgt) {
     vertices[0] = vec4(-1.0, -1.0,  -1.0,  1.0);
     vertices[1] = vec4( 1.0, -1.0,  -1.0,  1.0);
     vertices[2] = vec4( 1.0,  1.0,  -1.0,  1.0);
     vertices[3] = vec4( 1.0,  1.0,  -1.0,  1.0);
     vertices[4] = vec4(-1.0,  1.0,  -1.0,  1.0);
     vertices[5] = vec4(-1.0, -1.0,  -1.0,  1.0);
-    resize(src, tgt);
+    resize(src, tgt, scale, offset);
 }
 
 ScalingRectangle::~ScalingRectangle() {
@@ -22,7 +24,9 @@ void ScalingRectangle::draw(Program& shader) {
     vbo->draw(shader);
 }
 
-void ScalingRectangle::resize(vec2 src, vec2 tgt) {
+void ScalingRectangle::resize(vec2 src, vec2 tgt, float scale, vec2 offset) {
+    source = src;
+    target = tgt;
     if (vbo)
         delete vbo;
     Mesh mesh;
@@ -31,7 +35,10 @@ void ScalingRectangle::resize(vec2 src, vec2 tgt) {
     mat4 tfm = getOProjMat(max(aspectRatio, 1.0f), max(1.0/aspectRatio, 1.0f), -max(aspectRatio, 1.0f), -max(1.0/aspectRatio, 1.0f));
     
     for (unsigned int i=0; i<6; i++) {
-        mesh.pushPosition(tfm * vertices[i]);
+        vec4 aspectCorrectedVertex = tfm * vertices[i];
+        aspectCorrectedVertex.x = aspectCorrectedVertex.x*scale + offset.x;
+        aspectCorrectedVertex.y = aspectCorrectedVertex.y*scale + offset.y;
+        mesh.pushPosition(aspectCorrectedVertex);
     }
     
     mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
@@ -49,4 +56,8 @@ void ScalingRectangle::resize(vec2 src, vec2 tgt) {
     mesh.pushTexcoord(vec2(0.0, 0.0));
     
     vbo = new StaticModel(mesh);
+}
+
+void ScalingRectangle::move(vec2 offset, float scale) {
+    resize(source, target, scale, offset);
 }

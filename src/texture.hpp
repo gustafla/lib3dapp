@@ -14,6 +14,7 @@ class Texture {
         
         GLuint getWidth();
         GLuint getHeight();
+        float getAspect();
         
         void setFilter(GLuint _filter=GL_LINEAR);
         
