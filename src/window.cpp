@@ -16,7 +16,7 @@ aspect(((float)conf.w)/((float)conf.h)) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 
     window = SDL_CreateWindow(caption.c_str(), SDL_WINDOWPOS_CENTERED_DISPLAY(conf.display), SDL_WINDOWPOS_CENTERED_DISPLAY(conf.display), conf.w, conf.h, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | (conf.fullscreen ? SDL_WINDOW_FULLSCREEN : 0));
     if (!window) {
