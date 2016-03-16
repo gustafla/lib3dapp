@@ -5,11 +5,11 @@ Mesh::Mesh() {
     
 }
 
-void Mesh::pushPosition(vec4 position) {
+void Mesh::pushPosition(vec3 position) {
     positions.push_back(position);
 }
 
-void Mesh::pushNormal(vec4 normal) {
+void Mesh::pushNormal(vec3 normal) {
     normals.push_back(normal);
 }
 
@@ -17,11 +17,11 @@ void Mesh::pushTexcoord(vec2 texcoord) {
     texcoords.push_back(texcoord);
 }
 
-const std::vector<vec4>& Mesh::getPositions() {
+const std::vector<vec3>& Mesh::getPositions() {
     return positions;
 }
 
-const std::vector<vec4>& Mesh::getNormals() {
+const std::vector<vec3>& Mesh::getNormals() {
     return normals;
 }
 
@@ -38,7 +38,6 @@ const bool Mesh::getAOSArray(std::vector<float>& array) {
                     array.push_back(positions[i].x);
                     array.push_back(positions[i].y);
                     array.push_back(positions[i].z);
-                    array.push_back(positions[i].w);
                     if (texcoords.size()) {
                         array.push_back(texcoords[i].x);
                         array.push_back(texcoords[i].y);
@@ -47,7 +46,6 @@ const bool Mesh::getAOSArray(std::vector<float>& array) {
                         array.push_back(normals[i].x);
                         array.push_back(normals[i].y);
                         array.push_back(normals[i].z);
-                        array.push_back(normals[i].w);
                     }
                 }
                 success = true;
@@ -62,13 +60,11 @@ void Mesh::getSOAArray(std::vector<float>& posArray, std::vector<float>& nmlArra
         posArray.push_back(positions[i].x);
         posArray.push_back(positions[i].y);
         posArray.push_back(positions[i].z);
-        posArray.push_back(positions[i].w);
     }
     for (int i=0; i<positions.size(); i++) {
         nmlArray.push_back(normals[i].x);
         nmlArray.push_back(normals[i].y);
         nmlArray.push_back(normals[i].z);
-        nmlArray.push_back(normals[i].w);
     }
     for (int i=0; i<positions.size(); i++) {
         texArray.push_back(texcoords[i].x);

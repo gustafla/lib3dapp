@@ -3,8 +3,10 @@
 #include "define.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
+#include <climits>
 
-Shader::Shader(std::string filename):
+Shader::Shader(std::string filename, LightingState lights):
 handle(0),
 name(filename) {
     GLenum type = GL_VERTEX_SHADER;
@@ -31,9 +33,27 @@ name(filename) {
     }
     check();
     
-    const char* sourcePtr = source.c_str();
-    glShaderSource(handle, 1, &sourcePtr, NULL);
+    const unsigned int NUM_DIGITS = 16;
+    char lightsStr[sizeof("#define ")*2 + sizeof(MACRO_LIGHTS_DIRECTIONAL) + sizeof(MACRO_LIGHTS_POINT) + NUM_DIGITS*2 + 3];
+    char directionalLightsStr[NUM_DIGITS];
+    char pointLightsStr[NUM_DIGITS];
+    sprintf(directionalLightsStr, "%d", lights.getDirectionalLights().size());
+    sprintf(pointLightsStr, "%d", lights.getPointLights().size());
+    strcpy(lightsStr, "#define ");
+    strcat(lightsStr, MACRO_LIGHTS_DIRECTIONAL);
+    strcat(lightsStr, " ");
+    strcat(lightsStr, directionalLightsStr);
+    strcat(lightsStr, "\n#define ");
+    strcat(lightsStr, MACRO_LIGHTS_POINT);
+    strcat(lightsStr, " ");
+    strcat(lightsStr, pointLightsStr);
+    strcat(lightsStr, "\n");
+    
+    const char* sourceStr = source.c_str();
+    const char* finalSource[2] = {lightsStr, sourceStr};
+    glShaderSource(handle, 2, finalSource, NULL);
     check();
+    
     glCompileShader(handle);
     check();
 

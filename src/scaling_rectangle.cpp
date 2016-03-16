@@ -1,6 +1,6 @@
 #include "scaling_rectangle.hpp"
 #include "matrices.hpp"
-#include "util.hpp"
+#include "gfx_utils.hpp"
 
 ScalingRectangle::ScalingRectangle(vec2 src, vec2 tgt, float scale, vec2 offset):
 vbo(NULL),
@@ -38,15 +38,15 @@ void ScalingRectangle::resize(vec2 src, vec2 tgt, float scale, vec2 offset) {
         vec4 aspectCorrectedVertex = tfm * vertices[i];
         aspectCorrectedVertex.x = aspectCorrectedVertex.x*scale + offset.x;
         aspectCorrectedVertex.y = aspectCorrectedVertex.y*scale + offset.y;
-        mesh.pushPosition(aspectCorrectedVertex);
+        mesh.pushPosition(vec3(aspectCorrectedVertex.x, aspectCorrectedVertex.y, aspectCorrectedVertex.z));
     }
     
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
-    mesh.pushNormal(vec4(0.0, 0.0, 1.0, 0.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
+    mesh.pushNormal(vec3(0.0, 0.0, 1.0));
     
     mesh.pushTexcoord(vec2(0.0, 0.0));
     mesh.pushTexcoord(vec2(1.0, 0.0));

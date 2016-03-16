@@ -1,7 +1,9 @@
 #include "mvp.hpp"
 
 MVP::MVP(mat4 _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale):
-projection(_projection) {
+projection(_projection),
+modelModified(true),
+viewModified(true) {
     identity = getScaleMat(1.0f);
     viewTranslation = getTranslationMat(vtx, vty, vtz);
     viewRotation = getXYZRotMat(vrx, vry, vrz);
@@ -11,12 +13,23 @@ projection(_projection) {
     modelRotation = getXYZRotMat(rx, ry, rz);
     modelScale = getScaleMat(_scale);
     
-    buildModel();
     buildMVP();
 }
 
 void MVP::buildMVP() {
-    mvp = projection * view * model;
+    if (viewModified) {
+        buildView();
+    }
+    
+    if (modelModified) {
+        buildModel();
+    }
+    
+    mv = view * model;
+    mvp = projection * mv;
+    
+    modelModified = false;
+    viewModified = false;
 }
 
 void MVP::buildModel() {
@@ -34,37 +47,41 @@ void MVP::setProjection(mat4& _projection) {
 void MVP::setView(GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz) {
     viewTranslation = getTranslationMat(vtx, vty, vtz);
     viewRotation = getXYZRotMat(vrx, vry, vrz);
-    buildView();
+    viewModified = true;
 }
 
 void MVP::setViewTranslation(GLfloat vtx, GLfloat vty, GLfloat vtz) {
     viewTranslation = getTranslationMat(vtx, vty, vtz);
-    view = viewRotation * viewTranslation;
+    viewModified = true;
 }
 
 void MVP::setViewRotation(GLfloat vrx, GLfloat vry, GLfloat vrz) {
     viewRotation = getXYZRotMat(vrx, vry, vrz);
-    view = viewRotation * viewTranslation;
+    viewModified = true;
 }
 
 void MVP::setModel(GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale) {
     modelTranslation = getTranslationMat(tx, ty, tz);
     modelRotation = getXYZRotMat(rx, ry, rz);
     modelScale = getScaleMat(_scale);
-    model = modelTranslation * modelRotation * modelScale;
+    modelModified = true;
 }
 
 void MVP::setModelTranslation(GLfloat tx, GLfloat ty, GLfloat tz) {
     modelTranslation = getTranslationMat(tx, ty, tz);
+    modelModified = true;
 }
 
 void MVP::setModelRotation(GLfloat rx, GLfloat ry, GLfloat rz) {
     modelRotation = getXYZRotMat(rx, ry, rz);
+    modelModified = true;
 }
 void MVP::setModelScale(GLfloat _scale) {
     modelScale = getScaleMat(_scale);
+    modelModified = true;
 }
 
+/*
 const mat4& MVP::getView() {
     return view;
 }
@@ -79,4 +96,15 @@ const mat4& MVP::getMVP() {
 
 const float* MVP::getMVPArray() {
     return (const float*)&mvp;
+}
+
+const float* MVP::getModelRotationArray() {
+    return (const float*)&modelRotation;
+}*/
+
+void MVP::apply(Program& shader) {
+    buildMVP();
+    shader.use();
+    glUniformMatrix4fv(shader.getUfmHandle("u_m_model_view_projection"), 1, GL_FALSE, (GLfloat*)&mvp);
+    glUniformMatrix4fv(shader.getUfmHandle("u_m_model_view"), 1, GL_FALSE, (GLfloat*)&mv);
 }

@@ -1,11 +1,6 @@
 TODO:
 
-primitives
-    - Static struct in global scope?
-    - In Graphics that gets instanced in Game?
-        - May the Graphics object contain reference to all resources as well?
-            - YES!
-                - But free unneeded and reload between scenes to save GPU memory
+geometry generation tools
 text string drawing
 Shared resources?
 Sensible and clean shader source files!!!!

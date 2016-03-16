@@ -39,12 +39,23 @@
 
 
 //-----------------------------------------------------------------------------
+//----------------------------------LIMITS-------------------------------------
+//-----------------------------------------------------------------------------
+
+/*NOT REINFORCED YET*/
+#define MAX_N_DIRECTIONAL_LIGHTS 16
+#define MAX_N_POINT_LIGHTS       256
+
+
+//-----------------------------------------------------------------------------
 //--------------------------------ATTRIBUTES-----------------------------------
 //-----------------------------------------------------------------------------
 
-#define SIZE_POS        4
-#define SIZE_NORMAL     4
+#define SIZE_POS        3
+#define SIZE_NORMAL     3
 #define SIZE_TEXCOORD   2
 #define NAME_POS        "a_position"
 #define NAME_TEXCOORD   "a_texcoord"
 #define NAME_NORMAL     "a_normal"
+#define MACRO_LIGHTS_DIRECTIONAL "N_LIGHTS_DIRECTIONAL"
+#define MACRO_LIGHTS_POINT       "N_LIGHTS_POINT"

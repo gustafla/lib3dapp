@@ -15,9 +15,9 @@ Mesh loadOBJFile(std::string filename) {
     
     Mesh mesh;
     
-    std::vector<vec4>   vertices;
+    std::vector<vec3>   vertices;
     std::vector<vec2>   texcoords;
-    std::vector<vec4>   normals;
+    std::vector<vec3>   normals;
     std::vector<GLuint> indices;
 
     std::ifstream in(filename.c_str());
@@ -43,10 +43,10 @@ Mesh loadOBJFile(std::string filename) {
             continue;
         else if (objLine[index].c_str()[0]=='v' && objLine[index].c_str()[1]==' ') { //vertex
             sscanf(objLine[index].c_str(), "v %f %f %f", &tx, &ty, &tz);
-            vertices.push_back(vec4(tx, ty, tz, 1.0));
+            vertices.push_back(vec3(tx, ty, tz));
         } else if (objLine[index].c_str()[0]=='v' && objLine[index].c_str()[1]=='n') { //normal
             sscanf(objLine[index].c_str(), "vn %f %f %f", &tx, &ty, &tz);
-            normals.push_back(vec4(tx, ty, tz, 0.0));
+            normals.push_back(vec3(tx, ty, tz));
         } else if (objLine[index].c_str()[0]=='v' && objLine[index].c_str()[1]=='t') { //texture coordinate
             if (count(objLine[index].begin(), objLine[index].end(), ' ') == 3) {
                 sscanf(objLine[index].c_str(), "vt %f %f %f", &tx, &ty, &tz);
