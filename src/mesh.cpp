@@ -71,3 +71,21 @@ void Mesh::getSOAArray(std::vector<float>& posArray, std::vector<float>& nmlArra
         texArray.push_back(texcoords[i].y);
     }
 }
+
+void Mesh::transform(mat4 matrix) {
+    vec4 tmp;
+    for (int i=0; i<positions.size(); i++) {
+        tmp = matrix * vec4(positions[i], 1.0);
+        positions[i] = vec3(tmp.x, tmp.y, tmp.z);
+    }
+    for (int i=0; i<normals.size(); i++) {
+        tmp = matrix * vec4(normals[i], 0.0);
+        normals[i] = vec3(tmp.x, tmp.y, tmp.z);
+    }
+}
+
+void Mesh::join(Mesh& mesh) {
+    positions.insert(positions.end(), mesh.getPositions().begin(), mesh.getPositions().end());
+    normals.insert(normals.end(), mesh.getNormals().begin(), mesh.getNormals().end());
+    texcoords.insert(texcoords.end(), mesh.getTexcoords().begin(), mesh.getTexcoords().end());
+}

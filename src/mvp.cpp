@@ -1,9 +1,11 @@
 #include "mvp.hpp"
+#include "define.hpp"
 
 MVP::MVP(mat4 _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale):
 projection(_projection),
 modelModified(true),
-viewModified(true) {
+viewModified(true),
+projectionModified(true) {
     identity = getScaleMat(1.0f);
     viewTranslation = getTranslationMat(vtx, vty, vtz);
     viewRotation = getXYZRotMat(vrx, vry, vrz);
@@ -12,11 +14,9 @@ viewModified(true) {
     modelTranslation = getTranslationMat(tx, ty, tz);
     modelRotation = getXYZRotMat(rx, ry, rz);
     modelScale = getScaleMat(_scale);
-    
-    buildMVP();
 }
 
-void MVP::buildMVP() {
+/*void MVP::buildMVP() {
     if (viewModified) {
         buildView();
     }
@@ -26,11 +26,11 @@ void MVP::buildMVP() {
     }
     
     mv = view * model;
-    mvp = projection * mv;
+    //mvp = projection * mv;
     
     modelModified = false;
     viewModified = false;
-}
+}*/
 
 void MVP::buildModel() {
     model = modelTranslation * modelRotation * modelScale;
@@ -42,6 +42,7 @@ void MVP::buildView() {
 
 void MVP::setProjection(mat4& _projection) {
     projection = _projection;
+    projectionModified = true;
 }
 
 void MVP::setView(GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz) {
@@ -103,8 +104,22 @@ const float* MVP::getModelRotationArray() {
 }*/
 
 void MVP::apply(Program& shader) {
-    buildMVP();
+    //buildMVP();
     shader.use();
-    glUniformMatrix4fv(shader.getUfmHandle("u_m_model_view_projection"), 1, GL_FALSE, (GLfloat*)&mvp);
-    glUniformMatrix4fv(shader.getUfmHandle("u_m_model_view"), 1, GL_FALSE, (GLfloat*)&mv);
+    
+    glUniformMatrix4fv(shader.getUfmHandle(NAME_U_MAT_PROJECTION), 1, GL_FALSE, (GLfloat*)&projection);
+    
+    if (modelModified) {
+        buildModel();
+    }
+    glUniformMatrix4fv(shader.getUfmHandle(NAME_U_MAT_MODEL), 1, GL_FALSE, (GLfloat*)&model);
+    
+    if (viewModified) {
+        buildView();
+    }
+    glUniformMatrix4fv(shader.getUfmHandle(NAME_U_MAT_VIEW), 1, GL_FALSE, (GLfloat*)&view);
+    
+    projectionModified = false;
+    viewModified = false;
+    modelModified = false;
 }

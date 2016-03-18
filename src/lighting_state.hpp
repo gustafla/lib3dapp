@@ -1,20 +1,24 @@
 #pragma once
 
 #include <vector>
+#include <cstdlib>
 #include "vectors.hpp"
+#include "light.hpp"
 
 class LightingState {
     public:
-        LightingState(float _ambient=1.0f, std::vector<vec3> _pointLights = std::vector<vec3>(), std::vector<vec3> _directionalLights = std::vector<vec3>());
-        void addPointLight(vec3 position);
-        void addDirectionalLight(vec3 direction);
+        LightingState(float _ambient=1.0f, const Light* _pointLights=NULL, unsigned int nPointLights=0, const Light* _directionalLights=NULL, unsigned int nDirectionalLights=0);
+        void addPointLight(Light light);
+        void addDirectionalLight(Light light);
         void setAmbient(float _ambient);
-        std::vector<vec3>& getPointLights();
-        std::vector<vec3>& getDirectionalLights();
+        void setPointLight(unsigned int i, Light light);
+        void setDirectionalLight(unsigned int i, Light light);
+        std::vector<Light>& getPointLights();
+        std::vector<Light>& getDirectionalLights();
         float getAmbient();
         
     private:
         float ambient;
-        std::vector<vec3> pointLights;
-        std::vector<vec3> directionalLights;
+        std::vector<Light> pointLights;
+        std::vector<Light> directionalLights;
 };

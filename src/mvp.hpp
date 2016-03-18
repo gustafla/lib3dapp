@@ -27,15 +27,12 @@ class MVP {
         void apply(Program& shader);
         
     private:
-        void buildMVP();
         void buildModel();
         void buildView();
     
         bool viewModified;
         bool modelModified;
-    
-        mat4 mvp;
-        mat4 mv;
+        bool projectionModified;
     
         mat4 projection;
         
