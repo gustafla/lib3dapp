@@ -8,7 +8,7 @@ class StaticModel {
     public:
         StaticModel(Mesh mesh);
         ~StaticModel();
-        void draw(Program& shader);
+        void draw(Program& shader, GLuint mode=GL_TRIANGLES);
     private:
         GLuint verts;
         bool texcoords;

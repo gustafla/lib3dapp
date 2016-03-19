@@ -35,7 +35,7 @@ StaticModel::~StaticModel() {
     delete data;
 }
 
-void StaticModel::draw(Program& shader) {
+void StaticModel::draw(Program& shader, GLuint mode) {
     shader.use();
     check();
     
@@ -66,7 +66,7 @@ void StaticModel::draw(Program& shader) {
         offset += SIZE_NORMAL * sizeof(GLfloat);
     }
     
-    glDrawArrays(GL_TRIANGLES, 0, verts);
+    glDrawArrays(mode, 0, verts);
     check();
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     check();
