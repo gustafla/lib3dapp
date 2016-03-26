@@ -26,6 +26,8 @@ class MVP {
         
         void apply(Program& shader);
         
+        void reset();
+        
     private:
         void buildModel();
         void buildView();

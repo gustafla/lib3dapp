@@ -123,3 +123,8 @@ void MVP::apply(Program& shader) {
     viewModified = false;
     modelModified = false;
 }
+
+void MVP::reset() {
+    setView();
+    setModel();
+}

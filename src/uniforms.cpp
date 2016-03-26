@@ -2,10 +2,11 @@
 #include "define.hpp"
 #include <cstring>
 
-void setBaseUniforms(Program& shader, unsigned int nTex, LightingState lights, vec4 color) {
+void setBaseUniforms(Program& shader, unsigned int nTex, LightingState lights, vec4 color, float opacity) {
     setTextureUniforms(shader, nTex);
     setLightingUniforms(shader, lights);
     setColorUniform(shader, color);
+    setOpacityUniform(shader, opacity);
 }
 
 void setTextureUniforms(Program& shader, unsigned int n) {
@@ -28,6 +29,11 @@ void setLightingUniforms(Program& shader, LightingState lights) {
 void setTimeUniform(Program& shader, float t) {
     shader.use();
     glUniform1f(shader.getUfmHandle(NAME_U_TIME), t);
+}
+
+void setOpacityUniform(Program& shader, float a) {
+    shader.use();
+    glUniform1f(shader.getUfmHandle(NAME_U_OPACITY), a);
 }
 
 void setColorUniform(Program& shader, vec4 c) {

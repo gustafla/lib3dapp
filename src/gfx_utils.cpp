@@ -42,3 +42,13 @@ vec3 triangleNormal(vec3 a, vec3 b, vec3 c) {
     w = c - a;
     return vnml(vec3((v.y*w.z - v.z*w.y), (v.z*w.x - v.x*w.z), (v.x*w.y - v.y*w.x)));
 }
+
+RgbaImage getPixel(vec4 color, bool alpha) {
+    RgbaImage pixel(1, 1, alpha ? 4:3, true, alpha);
+    pixel.getArray()[0] = color.x;
+    pixel.getArray()[1] = color.y;
+    pixel.getArray()[2] = color.z;
+    if (alpha)
+        pixel.getArray()[3] = color.w;
+    return pixel;
+}

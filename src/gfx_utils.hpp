@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include "vectors.hpp"
+#include "rgba_image.hpp"
 
 float max(float n, float m);
 float min(float n, float m);
@@ -12,3 +13,4 @@ vec2 mix(vec2 a, vec2 b, float n);
 vec3 mix(vec3 a, vec3 b, float n);
 vec4 mix(vec4 a, vec4 b, float n);
 vec3 triangleNormal(vec3 a, vec3 b, vec3 c);
+RgbaImage getPixel(vec4 color, bool alpha=false);
