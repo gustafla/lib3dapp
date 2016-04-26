@@ -1,5 +1,8 @@
-**luutifa's new 3D+audio engine for game and demo development**
+**luutifa's new C++ wrapper library/framework for game and demo development**
 
-This in a work-in-progress project and you should not even be reading this.  
-Using SDL2  
+Confimedly supports Linux PC and Raspberry Pi.  
+This in a work-in-progress project.  
+Semver 0.1  
+Using SDL2, OpenGL 2.1  
+SDL1 and GL ES 2.0 on RasPi.  
 Building is done with make, for now.  

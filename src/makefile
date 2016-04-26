@@ -1,3 +1,19 @@
+# Copyright 2016 Lauri Gustafsson
+#This file is part of lib3dapp.
+
+#lib3dapp is free software: you can redistribute it and/or modify
+#it under the terms of the GNU Lesser General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+
+#lib3dapp is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU Lesser General Public License for more details.
+
+#You should have received a copy of the GNU Lesser General Public License
+#along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
+
 # A makefile.
 
 SRCS=window.cpp window_rpi.cpp application.cpp config.cpp vectors.cpp program.cpp util.cpp gfx_utils.cpp mesh.cpp buffer.cpp static_model.cpp obj_file.cpp matrices.cpp mvp.cpp resource_handler.cpp geo_quad.cpp geo_triangle_equilateral.cpp rgba_image.cpp texture.cpp paths.cpp tga_file.cpp shader.cpp graphics.cpp framebuffer.cpp renderbuffer.cpp scaling_rectangle.cpp uniforms.cpp lighting_state.cpp light.cpp
