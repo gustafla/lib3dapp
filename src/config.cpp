@@ -23,6 +23,13 @@
 #include "graphics.hpp"
 #include "util.hpp"
 
+const ConfigParameter Config::reservedParams[Config::NUM_RESERVED_PARAMS] = {
+    ConfigParameter("--fullscreen", 0),
+    ConfigParameter("--display", 1),
+    ConfigParameter("-w", 1),
+    ConfigParameter("-h", 1)
+};
+
 void argErr(std::string arg) {
     std::cout << "Invalid argument near " << arg << std::endl;
     exit(ERR_INVALID_ARGUMENT);

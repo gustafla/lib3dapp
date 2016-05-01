@@ -24,11 +24,12 @@
 #include "define.hpp"
 #include <sys/time.h>
 
-Window::Window(const Config& conf, std::string caption, vec2 realsize):
+Window::Window(const Config& conf, std::string caption, vec2 realsize, float alpha):
 width(conf.w),
 height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
     std::cout << caption << std::endl;
+    SDL_WM_SetCaption(caption.c_str(), NULL);
     
     EGLint attribList[] = {
         EGL_RED_SIZE,       5,
@@ -78,7 +79,7 @@ aspect(((float)conf.w)/((float)conf.h)) {
     dispman_update = vc_dispmanx_update_start(0);
 
     VC_DISPMANX_ALPHA_T alpha = {
-        DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS,255,0
+        DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS,static_cast<int>(alpha*255.0f),0
     };
 
     dispman_element = vc_dispmanx_element_add(dispman_update, dispman_display, 0, &dst_rect, 0, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, 0, (DISPMANX_TRANSFORM_T)0);
@@ -181,6 +182,10 @@ void Window::resize(unsigned int w, unsigned int h) {
 
 void Window::restoreViewport() {
     glViewport(0, 0, width, height);
+}
+
+void Window::setCaption(std::string caption) {
+    SDL_WM_SetCaption(caption.c_str(), NULL);
 }
 
 #endif

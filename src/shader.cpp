@@ -22,29 +22,12 @@
 #include <cstring>
 #include <climits>
 
-Shader::Shader(std::string filename, LightingState lights):
+Shader::Shader(std::string source, GLenum type, std::string _name, LightingState lights):
 handle(0),
-name(filename) {
-    GLenum type = GL_VERTEX_SHADER;
-    std::size_t found = filename.find_last_of(".");
-    std::string extension = filename.substr(found+1);
-    if (extension != "vert") {
-        if (extension != "frag") {
-            std::cout << "Shader unsure of file type " << filename << std::endl;
-            exit(ERR_SHADER);
-        } else {
-            type = GL_FRAGMENT_SHADER;
-        }
-    }
-    
-    std::string source;
-    if (!loadFile(filename, source)) {
-        std::cout << "Shader couldn't load file " << filename << std::endl;
-    }
-    
+name(_name) {    
     handle = glCreateShader(type);
     if (handle == 0) {
-        std::cout << "Shader couldn't create a new shader object for " << filename << std::endl;
+        std::cout << "Shader couldn't create a new shader object for " << _name << std::endl;
         exit(ERR_SHADER);
     }
     check();
@@ -85,7 +68,7 @@ name(filename) {
         if (infoLen > 1) {
             char* infoLog = (char*)malloc(sizeof(char) * infoLen);
             glGetShaderInfoLog(handle, infoLen, NULL, infoLog);
-            std::cout << "Shader couldn't compile file " << filename << std::endl;
+            std::cout << "Shader couldn't compile file " << _name << std::endl;
             std::cout << infoLog << std::endl;
             free(infoLog);
         }
@@ -105,4 +88,24 @@ Shader::~Shader() {
 
 std::string Shader::getName() {
     return name;
+}
+
+Shader Shader::loadFromFile(std::string filename, LightingState lights) { 
+    GLenum type = GL_VERTEX_SHADER;
+    std::size_t found = filename.find_last_of(".");
+    std::string extension = filename.substr(found+1);
+    if (extension != "vert") {
+        if (extension != "frag") {
+            std::cout << "Shader unsure of file type " << filename << std::endl;
+            exit(ERR_SHADER);
+        } else {
+            type = GL_FRAGMENT_SHADER;
+        }
+    }
+    
+    std::string source;
+    if (!loadFile(filename, source)) {
+        exit(0);
+    }
+    return Shader(source, type, filename, lights);
 }

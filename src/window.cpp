@@ -22,7 +22,7 @@
 #include "define.hpp"
 #include <cstring>
 
-Window::Window(const Config& conf, std::string caption, vec2 realsize):
+Window::Window(const Config& conf, std::string caption, vec2 realsize, float alpha):
 width(conf.w),
 height(conf.h),
 aspect(((float)conf.w)/((float)conf.h)) {
@@ -113,6 +113,10 @@ void Window::resize(unsigned int w, unsigned int h) {
 
 void Window::restoreViewport() {
     glViewport(0, 0, width, height);
+}
+
+void Window::setCaption(std::string caption) {
+    SDL_SetWindowTitle(window, caption.c_str());
 }
 
 #endif

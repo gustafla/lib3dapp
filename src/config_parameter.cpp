@@ -13,26 +13,11 @@
 
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
-
-#pragma once
-
-#include <string>
+    
 #include "config_parameter.hpp"
 
-void argErr(std::string arg);
-
-class Config {
-    public:
-        Config(int argc, char** argv);
-
-        bool fullscreen;
-        unsigned int w;
-        unsigned int h;
-        unsigned int display;
-        
-        static const int NUM_RESERVED_PARAMS = 4;
-        static const ConfigParameter reservedParams[NUM_RESERVED_PARAMS];
-        
-    private:
-        void parseArgs(int argc, char** argv);
+ConfigParameter::ConfigParameter(std::string param, int _extra):
+parameter(param),
+extra(_extra) {
+    
 };

@@ -23,7 +23,7 @@
 
 class Window {
     public:
-        Window(const Config& conf, std::string caption="", vec2 realsize=vec2(0));
+        Window(const Config& conf, std::string caption="", vec2 realsize=vec2(0), float alpha=1.0f);
         ~Window();
         void close();
         void swapBuffers();
@@ -34,6 +34,7 @@ class Window {
         float getAspect();
         void resize(unsigned int w, unsigned int h);
         void restoreViewport();
+        void setCaption(std::string caption="");
     private:
         #ifdef RASPI_BUILD
             EGLNativeWindowType window;

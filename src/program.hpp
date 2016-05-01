@@ -21,8 +21,6 @@
 #include "shader.hpp"
 #include "graphics.hpp"
 
-std::string shaderPath(std::string name);
-
 class Program {
     public:
         Program();
@@ -32,7 +30,7 @@ class Program {
         GLuint getUfmHandle(std::string);
         GLuint getAtrHandle(std::string);
         void use();
-    
+        
     private:
         std::map<std::string, GLuint> uniforms;
         std::map<std::string, GLuint> attributes;

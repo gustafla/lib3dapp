@@ -22,10 +22,13 @@
 
 class Shader {
     public:
-        Shader(std::string filename, LightingState lights=LightingState());
+        Shader(std::string source, GLenum type, std::string _name="unknown shader", LightingState lights=LightingState());
         ~Shader();
         GLuint getHandle();
         std::string getName();
+        
+        static Shader loadFromFile(std::string filename, LightingState lights=LightingState());
+        
     private:
         GLuint handle;
         std::string name;

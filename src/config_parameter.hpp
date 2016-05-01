@@ -17,22 +17,9 @@
 #pragma once
 
 #include <string>
-#include "config_parameter.hpp"
 
-void argErr(std::string arg);
-
-class Config {
-    public:
-        Config(int argc, char** argv);
-
-        bool fullscreen;
-        unsigned int w;
-        unsigned int h;
-        unsigned int display;
-        
-        static const int NUM_RESERVED_PARAMS = 4;
-        static const ConfigParameter reservedParams[NUM_RESERVED_PARAMS];
-        
-    private:
-        void parseArgs(int argc, char** argv);
+struct ConfigParameter {
+    ConfigParameter(std::string param="", int _extra=0);
+    std::string parameter; // Parameter name, such as "--fullscreen"
+    int extra;             // How many next argv elements are needed
 };
