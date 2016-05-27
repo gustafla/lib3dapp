@@ -14,9 +14,9 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "shader.hpp"
-#include "util.hpp"
-#include "define.hpp"
+#include "3dapp_shader.hpp"
+#include "3dapp_util.hpp"
+#include "3dapp_consts.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <cstring>

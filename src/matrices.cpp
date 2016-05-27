@@ -14,11 +14,11 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "matrices.hpp"
-#include "graphics.hpp"
+#include "3dapp_matrices.hpp"
+#include "3dapp_graphics.hpp"
 #include <cmath>
 
-mat4 getPProjMat(float fov, float aspect, float znear, float zfar) {
+mat4 Lib3dapp::getPProjMat(float fov, float aspect, float znear, float zfar) {
     mat4 mat;
     
     float xymax = znear * tan(fov * (M_PI/360.0));
@@ -45,7 +45,7 @@ mat4 getPProjMat(float fov, float aspect, float znear, float zfar) {
     return mat;
 }
 
-mat4 getOProjMat(float right, float top, float left, float bottom, float near, float far) {
+mat4 Lib3dapp::getOProjMat(float right, float top, float left, float bottom, float near, float far) {
 	mat4 mat;
 			
 	mat.a.x = 2.0f / (right - left);
@@ -59,7 +59,7 @@ mat4 getOProjMat(float right, float top, float left, float bottom, float near, f
 	return mat;
 }
 
-mat4 getXRotMat(float a) {
+mat4 Lib3dapp::getXRotMat(float a) {
     mat4 mat;
     
     mat.a.x = 1.0;
@@ -72,7 +72,7 @@ mat4 getXRotMat(float a) {
     return mat;
 }
 
-mat4 getYRotMat(float a) {
+mat4 Lib3dapp::getYRotMat(float a) {
     mat4 mat;
     
     mat.a.x = cos(a);
@@ -85,7 +85,7 @@ mat4 getYRotMat(float a) {
     return mat;
 }
 
-mat4 getZRotMat(float a) {
+mat4 Lib3dapp::getZRotMat(float a) {
     mat4 mat;
     
     mat.a.x = cos(a);
@@ -98,11 +98,11 @@ mat4 getZRotMat(float a) {
     return mat;
 }
 
-mat4 getXYZRotMat(float x, float y, float z) {
+mat4 Lib3dapp::getXYZRotMat(float x, float y, float z) {
     return getXRotMat(x) * getYRotMat(y) * getZRotMat(z);
 }
 
-mat4 getTranslationMat(float x, float y, float z) {
+mat4 Lib3dapp::getTranslationMat(float x, float y, float z) {
     mat4 mat;
     
     mat.a.x = 1.0f;
@@ -116,7 +116,7 @@ mat4 getTranslationMat(float x, float y, float z) {
     return mat;
 }
 
-mat4 getScaleMat(float x, float y, float z) {
+mat4 Lib3dapp::getScaleMat(float x, float y, float z) {
     mat4 mat;
     
     mat.a.x = x;
@@ -127,7 +127,7 @@ mat4 getScaleMat(float x, float y, float z) {
     return mat;
 }
 
-mat4 getScaleMat(float x) {
+mat4 Lib3dapp::getScaleMat(float x) {
     mat4 mat;
     
     mat.a.x = x;

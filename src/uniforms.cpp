@@ -14,18 +14,18 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "uniforms.hpp"
-#include "define.hpp"
+#include "3dapp_uniforms.hpp"
+#include "3dapp_consts.hpp"
 #include <cstring>
 
-void setBaseUniforms(Program& shader, unsigned int nTex, LightingState lights, vec4 color, float opacity) {
+void Lib3dapp::setBaseUniforms(Program& shader, unsigned int nTex, LightingState lights, vec4 color, float opacity) {
     setTextureUniforms(shader, nTex);
     setLightingUniforms(shader, lights);
     setColorUniform(shader, color);
     setOpacityUniform(shader, opacity);
 }
 
-void setTextureUniforms(Program& shader, unsigned int n) {
+void Lib3dapp::setTextureUniforms(Program& shader, unsigned int n) {
     shader.use();
     int* tab = new int[n];
     for (unsigned int i=0; i<n; i++) {
@@ -35,29 +35,29 @@ void setTextureUniforms(Program& shader, unsigned int n) {
     delete[] tab;
 }
 
-void setLightingUniforms(Program& shader, LightingState lights) {
+void Lib3dapp::setLightingUniforms(Program& shader, LightingState lights) {
     shader.use();
     glUniform1f(shader.getUfmHandle(NAME_U_LIGTH_AMBIENT), lights.getAmbient());
     glUniform3fv(shader.getUfmHandle(NAME_U_LIGTHS_DIRECTIONAL), lights.getDirectionalLights().size()*2, (GLfloat*)&lights.getDirectionalLights()[0]);
     glUniform3fv(shader.getUfmHandle(NAME_U_LIGTHS_POINT), lights.getPointLights().size()*2, (GLfloat*)&lights.getPointLights()[0]);
 }
 
-void setTimeUniform(Program& shader, float t) {
+void Lib3dapp::setTimeUniform(Program& shader, float t) {
     shader.use();
     glUniform1f(shader.getUfmHandle(NAME_U_TIME), t);
 }
 
-void setOpacityUniform(Program& shader, float a) {
+void Lib3dapp::setOpacityUniform(Program& shader, float a) {
     shader.use();
     glUniform1f(shader.getUfmHandle(NAME_U_OPACITY), a);
 }
 
-void setColorUniform(Program& shader, vec4 c) {
+void Lib3dapp::setColorUniform(Program& shader, vec4 c) {
     shader.use();
     glUniform4fv(shader.getUfmHandle(NAME_U_COLOR), 1, (GLfloat*)&c);
 }
 
-void setResolutionUniform(Program& shader, vec2 r) {
+void Lib3dapp::setResolutionUniform(Program& shader, vec2 r) {
     shader.use();
     glUniform2fv(shader.getUfmHandle(NAME_U_RESOLUTION), 1, (GLfloat*)&r);
 }

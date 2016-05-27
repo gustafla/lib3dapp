@@ -14,12 +14,12 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "static_model.hpp"
-#include "graphics.hpp"
+#include "3dapp_static_model.hpp"
+#include "3dapp_graphics.hpp"
 #include <vector>
 #include <cstdlib>
 #include <iostream>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 
 StaticModel::StaticModel(Mesh mesh):
 normals(false),

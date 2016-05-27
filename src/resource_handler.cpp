@@ -14,13 +14,13 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "resource_handler.hpp"
-#include "obj_file.hpp"
-#include "tga_file.hpp"
-#include "mesh.hpp"
-#include "rgba_image.hpp"
+#include "3dapp_resource_handler.hpp"
+#include "3dapp_obj_file.hpp"
+#include "3dapp_tga_file.hpp"
+#include "3dapp_mesh.hpp"
+#include "3dapp_rgba_image.hpp"
 #include <iostream>
-#include "paths.hpp"
+#include "3dapp_paths.hpp"
 
 StaticModel* ResourceHandler::getStaticModel(std::string name) {
     if (staticModels.find(name) == staticModels.end()) {

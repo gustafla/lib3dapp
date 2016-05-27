@@ -14,9 +14,9 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "texture.hpp"
+#include "3dapp_texture.hpp"
 #include <iostream>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 
 Texture::Texture(RgbaImage image):
 width(image.getWidth()),

@@ -16,12 +16,11 @@
 
 #ifdef RASPI_BUILD
 
-#include "window.hpp"
+#include "3dapp_window.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 #include <cstring>
-#include "define.hpp"
 #include <sys/time.h>
 
 Window::Window(const Config& conf, std::string caption, vec2 realsize, float alpha):
@@ -78,11 +77,11 @@ aspect(((float)conf.w)/((float)conf.h)) {
     dispman_display = vc_dispmanx_display_open(0);
     dispman_update = vc_dispmanx_update_start(0);
 
-    VC_DISPMANX_ALPHA_T alpha = {
+    VC_DISPMANX_ALPHA_T dispmanAlpha = {
         DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS,static_cast<int>(alpha*255.0f),0
     };
 
-    dispman_element = vc_dispmanx_element_add(dispman_update, dispman_display, 0, &dst_rect, 0, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, 0, (DISPMANX_TRANSFORM_T)0);
+    dispman_element = vc_dispmanx_element_add(dispman_update, dispman_display, 0, &dst_rect, 0, &src_rect, DISPMANX_PROTECTION_NONE, &dispmanAlpha, 0, (DISPMANX_TRANSFORM_T)0);
 
     nativewindow.element = dispman_element;
     nativewindow.width = width;

@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "light.hpp"
+#include "3dapp_light.hpp"
 
 Light::Light(vec3 _vector, vec3 _color):
 vector(_vector),

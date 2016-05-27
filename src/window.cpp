@@ -16,10 +16,10 @@
 
 #ifndef RASPI_BUILD
 
-#include "window.hpp"
+#include "3dapp_window.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 #include <cstring>
 
 Window::Window(const Config& conf, std::string caption, vec2 realsize, float alpha):

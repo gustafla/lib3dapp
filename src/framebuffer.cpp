@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "framebuffer.hpp"
+#include "3dapp_framebuffer.hpp"
 
 Framebuffer::Framebuffer(GLuint w, GLuint h):
 width(w),

@@ -14,12 +14,12 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "graphics.hpp"
+#include "3dapp_graphics.hpp"
 #include <cstdlib>
 #include <iostream>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 
-void checkGl(std::string file, int line) {
+void Lib3dapp::checkGl(std::string file, int line) {
     #ifdef DEBUG_BUILD
         GLenum glErr = glGetError();
         if (glErr) {
@@ -51,14 +51,14 @@ void checkGl(std::string file, int line) {
     #endif
 }
 
-void cleanupGraphics() {
+void Lib3dapp::cleanupGraphics() {
     #ifdef RASPI_BUILD
         bcm_host_deinit();
     #endif
     SDL_Quit();
 }
 
-void initializeGraphics() {
+void Lib3dapp::initializeGraphics() {
     #ifdef RASPI_BUILD
         bcm_host_init();
         if ((SDL_Init(SDL_INIT_TIMER|SDL_INIT_AUDIO|SDL_INIT_VIDEO)) != 0) {

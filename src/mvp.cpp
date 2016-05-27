@@ -14,8 +14,8 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "mvp.hpp"
-#include "define.hpp"
+#include "3dapp_mvp.hpp"
+#include "3dapp_consts.hpp"
 
 MVP::MVP(mat4 _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale):
 projection(_projection),

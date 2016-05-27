@@ -14,23 +14,24 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include "3dapp_util.hpp"
 #include <cstdlib>
 #include <unistd.h>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "vectors.hpp"
+#include "3dapp_vectors.hpp"
 
-bool isdigits(std::string s) {
+bool Lib3dapp::isdigits(std::string s) {
     return s.find_first_not_of("0123456789") == std::string::npos;
 }
 
-bool isfloat(std::string s) {
+bool Lib3dapp::isfloat(std::string s) {
     return s.find_first_not_of("0123456789.") == std::string::npos;
 }
 
-bool loadFile(std::string inFileName, std::string& outString, int linesize) {
+bool Lib3dapp::loadFile(std::string inFileName, std::string& outString, int linesize) {
     std::ifstream inFile(inFileName.c_str());
     if (!inFile.is_open())
     {
@@ -49,7 +50,7 @@ bool loadFile(std::string inFileName, std::string& outString, int linesize) {
     return true;
 }
 
-int countSubstring(const std::string& str, const std::string& sub) {
+int Lib3dapp::countSubstring(const std::string& str, const std::string& sub) {
     if (sub.length() == 0)
         return 0;
     int count = 0;
@@ -59,6 +60,6 @@ int countSubstring(const std::string& str, const std::string& sub) {
     return count;
 }
 
-float randf() {
+float Lib3dapp::randf() {
     return ((float(rand()%100000)/100000.0f)-0.5)*2.0;
 }

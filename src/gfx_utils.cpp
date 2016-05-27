@@ -14,21 +14,21 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "gfx_utils.hpp"
+#include "3dapp_gfx_utils.hpp"
 
-float max(float n, float m) {
+float Lib3dapp::max(float n, float m) {
     return (n>m) ? n : m;
 }
 
-float min(float n, float m) {
+float Lib3dapp::min(float n, float m) {
     return (n>m) ? m : n;
 }
 
-float clamp(float n, float a, float b) {
+float Lib3dapp::clamp(float n, float a, float b) {
     return ((n<a) ? a : ((n>b) ? b : n));
 }
 
-float smoothstep(float edge0, float edge1, float x) { //Stolen from Wikipedia :^)
+float Lib3dapp::smoothstep(float edge0, float edge1, float x) { //Stolen from Wikipedia :^)
     // Scale, bias and saturate x to 0..1 range
     x = clamp((x - edge0)/(edge1 - edge0), 0.0, 1.0); 
     // Evaluate polynomial
@@ -36,30 +36,30 @@ float smoothstep(float edge0, float edge1, float x) { //Stolen from Wikipedia :^
 }
 
 //Templates, again... Well, this works too.
-float mix(float a, float b, float n) {
+float Lib3dapp::mix(float a, float b, float n) {
     return a*(1-n)+b*n;
 }
 
-vec2 mix(vec2 a, vec2 b, float n) {
+vec2 Lib3dapp::mix(vec2 a, vec2 b, float n) {
     return a*(1-n)+b*n;
 }
 
-vec3 mix(vec3 a, vec3 b, float n) {
+vec3 Lib3dapp::mix(vec3 a, vec3 b, float n) {
     return a*(1-n)+b*n;
 }
 
-vec4 mix(vec4 a, vec4 b, float n) {
+vec4 Lib3dapp::mix(vec4 a, vec4 b, float n) {
     return a*(1-n)+b*n;
 }
 
-vec3 triangleNormal(vec3 a, vec3 b, vec3 c) {
+vec3 Lib3dapp::triangleNormal(vec3 a, vec3 b, vec3 c) {
     vec3 v, w;
     v = b - a;
     w = c - a;
     return vnml(vec3((v.y*w.z - v.z*w.y), (v.z*w.x - v.x*w.z), (v.x*w.y - v.y*w.x)));
 }
 
-RgbaImage getPixel(vec4 color, bool alpha) {
+RgbaImage Lib3dapp::getPixel(vec4 color, bool alpha) {
     RgbaImage pixel(1, 1, alpha ? 4:3, true, alpha);
     pixel.getArray()[0] = color.x;
     pixel.getArray()[1] = color.y;

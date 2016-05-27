@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
     
-#include "config_parameter.hpp"
+#include "3dapp_config_parameter.hpp"
 
 ConfigParameter::ConfigParameter(std::string param, int _extra):
 parameter(param),

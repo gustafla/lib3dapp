@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "rgba_image.hpp"
+#include "3dapp_rgba_image.hpp"
 #include <iostream>
 
 RgbaImage::RgbaImage(unsigned int w, unsigned int h, unsigned int s, bool c, bool a):

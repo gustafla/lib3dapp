@@ -14,8 +14,8 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "tga_file.hpp"
-#include "define.hpp"
+#include "3dapp_tga_file.hpp"
+#include "3dapp_consts.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -24,7 +24,7 @@ void errorPrint(std::string filename) {
     std::cout << "loadTGAFile(" << filename << "): Failed to load TGA file\n";
 }
 
-RgbaImage loadTGAFile(std::string filename) {
+RgbaImage Lib3dapp::loadTGAFile(std::string filename) {
     std::ifstream file;
     unsigned char header[6];
     unsigned char* imageData;

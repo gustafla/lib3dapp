@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "renderbuffer.hpp"
+#include "3dapp_renderbuffer.hpp"
 
 Renderbuffer::Renderbuffer(GLuint w, GLuint h) {
     glGenRenderbuffers(1, &handle);

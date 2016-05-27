@@ -14,14 +14,14 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "config.hpp"
+#include "3dapp_config.hpp"
 #include <cstring>
 #include <cstdlib>
-#include "define.hpp"
+#include "3dapp_consts.hpp"
 #include <iostream>
 #include <stdint.h>
-#include "graphics.hpp"
-#include "util.hpp"
+#include "3dapp_graphics.hpp"
+#include "3dapp_util.hpp"
 
 const ConfigParameter Config::reservedParams[Config::NUM_RESERVED_PARAMS] = {
     ConfigParameter("--fullscreen", 0),
@@ -30,7 +30,7 @@ const ConfigParameter Config::reservedParams[Config::NUM_RESERVED_PARAMS] = {
     ConfigParameter("-h", 1)
 };
 
-void argErr(std::string arg) {
+void Lib3dapp::argErr(std::string arg) {
     std::cout << "Invalid argument near " << arg << std::endl;
     exit(ERR_INVALID_ARGUMENT);
 }

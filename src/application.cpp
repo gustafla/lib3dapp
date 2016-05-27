@@ -13,15 +13,15 @@
 
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
-
-#include "application.hpp"
-#include "graphics.hpp"
-#include "vectors.hpp"
-#include "obj_file.hpp"
+    
+#include "3dapp_application.hpp"
+#include "3dapp_graphics.hpp"
+#include "3dapp_vectors.hpp"
+#include "3dapp_obj_file.hpp"
 #include <cmath>
 #include <iostream>
 #include <cmath>
-#include "geo_primitives.hpp"
+#include "3dapp_geo_primitives.hpp"
 
 Application::Application(Window& _window):
 running(true),
@@ -41,3 +41,4 @@ void Application::draw() {
     window.swapBuffers();
     check();
 }
+

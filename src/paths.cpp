@@ -14,10 +14,10 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "paths.hpp"
+#include "3dapp_paths.hpp"
 #include <string>
 
-std::string meshPath(std::string filename) {
+std::string Lib3dapp::meshPath(std::string filename) {
     std::string tmp = DATA_DIR;
     tmp+="/";
     tmp+=MESH_DIR;
@@ -26,7 +26,7 @@ std::string meshPath(std::string filename) {
     return tmp;
 }
 
-std::string texturePath(std::string filename) {
+std::string Lib3dapp::texturePath(std::string filename) {
     std::string tmp = DATA_DIR;
     tmp+="/";
     tmp+=TEXTURE_DIR;
@@ -35,7 +35,7 @@ std::string texturePath(std::string filename) {
     return tmp;
 }
 
-std::string shaderPath(std::string name) {
+std::string Lib3dapp::shaderPath(std::string name) {
     std::string tmp = DATA_DIR;
     tmp += "/";
     tmp += SHADER_DIR;

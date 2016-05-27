@@ -21,7 +21,7 @@ TARGET=lib3dapp.a
 OBJS=$(SRCS:.cpp=.o)
 CFLAGS=-O2 -MMD -MP -fPIC -pg -g
 debug:CFLAGS=-g -MMD -MP -DDEBUG_BUILD
-INCLUDES=-I./
+INCLUDES=-I./ -Iinclude/
 LFLAGS=
 #LIBS=-lGL -lSDL2 -lGLEW
 LIBS_CUSTOM=

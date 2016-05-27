@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "vectors.hpp"
+#include "3dapp_vectors.hpp"
 #include <cmath>
 
 vec2::vec2() {
@@ -351,38 +351,38 @@ vec4 vec4::operator/(const vec4& b) {
     return a;
 }
 
-float vdot(vec2 a, vec2 b) {
+float Lib3dapp::vdot(vec2 a, vec2 b) {
     return (a.x*b.x + a.y*b.y);
 }
 
-float vdot(vec3 a, vec3 b) {
+float Lib3dapp::vdot(vec3 a, vec3 b) {
     return (a.x*b.x + a.y*b.y + a.z*b.z);
 }
 
-float vdot(vec4 a, vec4 b) {
+float Lib3dapp::vdot(vec4 a, vec4 b) {
     return (a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w);
 }
 
-float vlen(vec2 a) {
+float Lib3dapp::vlen(vec2 a) {
     return sqrt(a.x*a.x + a.y*a.y);
 }
 
-float vlen(vec3 a) {
+float Lib3dapp::vlen(vec3 a) {
     return sqrt(a.x*a.x + a.y*a.y + a.z*a.z);
 }
 
-float vlen(vec4 a) {
+float Lib3dapp::vlen(vec4 a) {
     return sqrt(a.x*a.x + a.y*a.y + a.z*a.z + a.w*a.w);
 }
 
-vec2  vnml(vec2 a) {
+vec2  Lib3dapp::vnml(vec2 a) {
     return a/vlen(a);
 }
 
-vec3  vnml(vec3 a) {
+vec3  Lib3dapp::vnml(vec3 a) {
     return a/vlen(a);
 }
 
-vec4  vnml(vec4 a) {
+vec4  Lib3dapp::vnml(vec4 a) {
     return a/vlen(a);
 }

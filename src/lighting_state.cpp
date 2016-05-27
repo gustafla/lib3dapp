@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "lighting_state.hpp"
+#include "3dapp_lighting_state.hpp"
 
 LightingState::LightingState(float _ambient, const Light* _pointLights, unsigned int nPointLights, const Light* _directionalLights, unsigned int nDirectionalLights):
 ambient(_ambient) {

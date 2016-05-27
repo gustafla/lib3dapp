@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "buffer.hpp"
+#include "3dapp_buffer.hpp"
 
 Buffer::Buffer(GLfloat* data, GLuint size, GLenum hint) {
     glGenBuffers(1, &handle);

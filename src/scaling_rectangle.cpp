@@ -14,9 +14,9 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "scaling_rectangle.hpp"
-#include "matrices.hpp"
-#include "gfx_utils.hpp"
+#include "3dapp_scaling_rectangle.hpp"
+#include "3dapp_matrices.hpp"
+#include "3dapp_gfx_utils.hpp"
 
 ScalingRectangle::ScalingRectangle(vec2 src, vec2 tgt, float scale, vec2 offset):
 vbo(NULL),

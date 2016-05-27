@@ -14,12 +14,12 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "program.hpp"
-#include "util.hpp"
+#include "3dapp_program.hpp"
+#include "3dapp_util.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "define.hpp"
-#include "shader.hpp"
+#include "3dapp_consts.hpp"
+#include "3dapp_shader.hpp"
 
 Program::Program(Shader vertexShader, Shader fragmentShader):
 handle(0) {

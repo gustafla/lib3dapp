@@ -14,9 +14,9 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "geo_triangle_equilateral.hpp"
+#include "3dapp_geo_triangle_equilateral.hpp"
 
-Mesh buildTriangleEquilateralMesh() {
+Mesh Lib3dapp::buildTriangleEquilateralMesh() {
     Mesh mesh;
     mesh.pushPosition(vec3(-1.0, -1.0,  0.0));
     mesh.pushPosition(vec3( 1.0, -1.0,  0.0));

@@ -14,19 +14,19 @@
     You should have received a copy of the GNU Lesser General Public License
     along with lib3dapp.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "obj_file.hpp"
-#include "define.hpp"
-#include "vectors.hpp"
+#include "3dapp_obj_file.hpp"
+#include "3dapp_consts.hpp"
+#include "3dapp_vectors.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 #include <fstream>
 #include <algorithm>
 #include <cstdio>
-#include "util.hpp"
-#include "graphics.hpp"
+#include "3dapp_util.hpp"
+#include "3dapp_graphics.hpp"
 
-Mesh loadOBJFile(std::string filename) {
+Mesh Lib3dapp::loadOBJFile(std::string filename) {
     std::vector<std::string> objLine;
     
     Mesh mesh;
