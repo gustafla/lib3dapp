@@ -61,6 +61,8 @@ void StaticModel::draw(Program& shader, GLuint mode) {
     check();
     
     glEnableVertexAttribArray(shader.getAtrHandle(NAME_A_POSITION));
+    glDisableVertexAttribArray(shader.getAtrHandle(NAME_A_TEXCOORD));
+    glDisableVertexAttribArray(shader.getAtrHandle(NAME_A_NORMAL));
     check();
     glVertexAttribPointer(shader.getAtrHandle(NAME_A_POSITION), SIZE_POS, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
     check();

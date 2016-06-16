@@ -41,7 +41,7 @@ aspect(((float)conf.w)/((float)conf.h)) {
         EGL_NONE
     };
     
-    if (conf.fullscreen && realsize.y > 0.1f) { //The Pi H/W has a picture scaler
+    if (conf.fullscreen && realsize.y > 0.1f) { //The Pi has a picture scaler
         width = aspect*realsize.y; //So let's utilize it instead of a shader pass
         height = realsize.y;
     }
@@ -78,7 +78,9 @@ aspect(((float)conf.w)/((float)conf.h)) {
     dispman_update = vc_dispmanx_update_start(0);
 
     VC_DISPMANX_ALPHA_T dispmanAlpha = {
-        DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS,static_cast<int>(alpha*255.0f),0
+        DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS,
+        static_cast<uint32_t>(alpha*255.0f),
+        0
     };
 
     dispman_element = vc_dispmanx_element_add(dispman_update, dispman_display, 0, &dst_rect, 0, &src_rect, DISPMANX_PROTECTION_NONE, &dispmanAlpha, 0, (DISPMANX_TRANSFORM_T)0);

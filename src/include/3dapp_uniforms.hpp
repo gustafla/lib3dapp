@@ -27,7 +27,7 @@ namespace Lib3dapp {
     void setLightingUniforms(Program& shader, LightingState lights=LightingState());
     void setTimeUniform(Program& shader, float t=0.0f);
     void setColorUniform(Program& shader, vec4 c=vec4(0.0f));
-    void setOpacityUniform(Program& shader, float a);
+    void setOpacityUniform(Program& shader, float a=1.0f);
     void setResolutionUniform(Program& shader, vec2 r=vec2(SCREEN_W, SCREEN_H));
 };
 

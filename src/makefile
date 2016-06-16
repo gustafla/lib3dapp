@@ -19,7 +19,7 @@
 SRCS=$(wildcard *.cpp)
 TARGET=lib3dapp.a
 OBJS=$(SRCS:.cpp=.o)
-CFLAGS=-O2 -MMD -MP -fPIC -pg -g
+CFLAGS=-O2 -MMD -MP -fPIC -pg -g -Wall
 debug:CFLAGS=-g -MMD -MP -DDEBUG_BUILD
 INCLUDES=-I./ -Iinclude/
 LFLAGS=
@@ -27,8 +27,8 @@ LFLAGS=
 LIBS_CUSTOM=
 CC=g++
 
-raspi:CFLAGS=-O2 -MMD -MP -fPIC -DRASPI_BUILD
-raspi:INCLUDES=-I/opt/vc/include/ -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux -I/opt/vc/src/hello_pi/libs/ilclient -I/opt/vc/src/hello_pi/libs/vgfont -I./
+raspi:CFLAGS=-O2 -MMD -MP -fPIC -Wall -DRASPI_BUILD
+raspi:INCLUDES=-I/opt/vc/include/ -I./ -Iinclude/
 raspi:LFLAGS=-L/opt/vc/lib
 #raspi:LIBS=-lGLESv2 -lEGL -lbcm_host
 
