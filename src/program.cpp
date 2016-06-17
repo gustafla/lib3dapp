@@ -23,7 +23,7 @@
 
 Program::Program(Shader vertexShader, Shader fragmentShader):
 handle(0) {
-    GLint linked;
+    GLint linked; //Link status flag, used later
     
     handle = glCreateProgram();
     check();
@@ -33,57 +33,78 @@ handle(0) {
         exit(ERR_PROGRAM);
     }
 
+    //Link the Program
+    use();
     glAttachShader(handle, vertexShader.getHandle());
-    check();
     glAttachShader(handle, fragmentShader.getHandle());
-    check();
-
     glLinkProgram(handle);
     check();
 
     glGetProgramiv(handle, GL_LINK_STATUS, &linked);
 
+    //In case of failure
     if (!linked) {
         GLint infoLen = 0;
-        glGetProgramiv ( handle, GL_INFO_LOG_LENGTH, &infoLen );
+        glGetProgramiv (handle, GL_INFO_LOG_LENGTH, &infoLen);
 
         if (infoLen > 1) {
-            char* infoLog = (char*)malloc(sizeof(char) * infoLen);
-
-            glGetProgramInfoLog ( handle, infoLen, NULL, infoLog);
+            GLchar* infoLog = new GLchar[infoLen];
+            glGetProgramInfoLog (handle, infoLen, NULL, infoLog);
             std::cout << "Program couldn't link " << vertexShader.getName() << " and " << fragmentShader.getName() << std::endl << infoLog << std::endl;
-
-            free(infoLog);
+            delete[] infoLog;
         }
         glDeleteProgram(handle);
         exit(ERR_PROGRAM);
     }
+    
+    //Look up and store all uniforms to a string keyed std::map
+    int uniformCount;
+    int uniformLength;
+    glGetProgramiv(handle, GL_ACTIVE_UNIFORMS, &uniformCount);
+    glGetProgramiv(handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &uniformLength);
+    GLchar* ufmName = new GLchar[uniformLength];
+    GLint ufmSize;
+    GLenum ufmType;
+    for (int i=0; i<uniformCount; i++) {
+        glGetActiveUniform(handle, i, uniformLength, NULL, &ufmSize, &ufmType, ufmName);
+        uniforms[std::string(ufmName)] = glGetUniformLocation(handle, ufmName)+1;
+    }
+    delete[] ufmName;
+    
+    //Look up and store all attributes to a string keyed std::map
+    //Incremented by 1 because 0 is the default in std::map<,int>
+    //And we in fact want -1
+    int attribCount;
+    int attribLength;
+    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTES, &attribCount);
+    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &attribLength);
+    GLchar* atrName = new GLchar[attribLength];
+    GLint atrSize;
+    GLenum atrType;
+    for (int i=0; i<attribCount; i++) {
+        glGetActiveAttrib(handle, i, attribLength, NULL, &atrSize, &atrType, atrName);
+        attributes[std::string(atrName)] = glGetAttribLocation(handle, atrName)+1;
+    }
+    delete[] atrName;
 }
 
 Program::~Program() {
     glDeleteProgram(handle);
-    check();
 }
 
 GLuint Program::getHandle() {
     return handle;
 }
 
-GLuint Program::getUfmHandle(std::string name) {
-    if (uniforms.find(name) == uniforms.end())
-        uniforms[name] = glGetUniformLocation(handle, name.c_str());
-    check();
-    return uniforms[name];
+GLint Program::getUfmHandle(std::string name) {
+    return uniforms[name]-1; //Decrement back to original.
+    //Default 0 will give -1 now.
 }
 
-GLuint Program::getAtrHandle(std::string name) {
-    if (attributes.find(name) == attributes.end())
-        attributes[name] = glGetAttribLocation(handle, name.c_str());
-    check();
-    return attributes[name];
+GLint Program::getAtrHandle(std::string name) {
+    return attributes[name]-1;
 }
 
 void Program::use() {
     glUseProgram(handle);
-    check();
 }

@@ -55,37 +55,43 @@ void StaticModel::draw(Program& shader, GLuint mode) {
     shader.use();
     check();
     
+    GLint atrPs = shader.getAtrHandle(NAME_A_POSITION);
+    GLint atrNm = shader.getAtrHandle(NAME_A_NORMAL);
+    GLint atrTc = shader.getAtrHandle(NAME_A_TEXCOORD);
+    
     GLuint offset=0;
     
     data->bind();
     check();
     
-    glEnableVertexAttribArray(shader.getAtrHandle(NAME_A_POSITION));
-    glDisableVertexAttribArray(shader.getAtrHandle(NAME_A_TEXCOORD));
-    glDisableVertexAttribArray(shader.getAtrHandle(NAME_A_NORMAL));
-    check();
-    glVertexAttribPointer(shader.getAtrHandle(NAME_A_POSITION), SIZE_POS, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
-    check();
-    offset += SIZE_POS * sizeof(GLfloat);
-    
-    if (texcoords) {
-        glEnableVertexAttribArray(shader.getAtrHandle(NAME_A_TEXCOORD));
+    if (atrPs != -1) {
+        glEnableVertexAttribArray(atrPs);
+        glVertexAttribPointer(atrPs, SIZE_POS, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
         check();
-        glVertexAttribPointer(shader.getAtrHandle(NAME_A_TEXCOORD), SIZE_TEXCOORD, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
-        check();
-        offset += SIZE_TEXCOORD * sizeof(GLfloat);
+        offset += SIZE_POS * sizeof(GLfloat);
     }
-    
-    if (normals) {
-        glEnableVertexAttribArray(shader.getAtrHandle(NAME_A_NORMAL));
-        check();
-        glVertexAttribPointer(shader.getAtrHandle(NAME_A_NORMAL), SIZE_NORMAL, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
-        check();
-        offset += SIZE_NORMAL * sizeof(GLfloat);
+    if (atrTc != -1) {
+        if (texcoords) {
+            glEnableVertexAttribArray(atrTc);
+            glVertexAttribPointer(atrTc, SIZE_TEXCOORD, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
+            check();
+            offset += SIZE_TEXCOORD * sizeof(GLfloat);
+        } else {
+            glDisableVertexAttribArray(atrTc);
+        }
+    }
+    if (atrNm != -1) {
+        if (normals) {
+            glEnableVertexAttribArray(shader.getAtrHandle(NAME_A_NORMAL));
+            glVertexAttribPointer(shader.getAtrHandle(NAME_A_NORMAL), SIZE_NORMAL, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*stride, INT2P(offset));
+            check();
+            offset += SIZE_NORMAL * sizeof(GLfloat);
+        } else {
+            glDisableVertexAttribArray(atrNm);
+        }
     }
     
     glDrawArrays(mode, 0, verts);
-    check();
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     check();
 }

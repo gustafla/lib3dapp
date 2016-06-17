@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <map>
 #include <string>
+#include <map>
 #include "3dapp_shader.hpp"
 #include "3dapp_graphics.hpp"
 
@@ -28,17 +28,13 @@ namespace Lib3dapp {
         Program(Shader vertexShader, Shader fragmentShader);
         ~Program();
         GLuint getHandle();
-        GLuint getUfmHandle(std::string);
-        GLuint getAtrHandle(std::string);
+        GLint getUfmHandle(std::string name);
+        GLint getAtrHandle(std::string name);
         void use();
             
         private:
-        std::map<std::string, GLuint> uniforms;
-        std::map<std::string, GLuint> attributes;
-        //std::string vname;
-        //std::string fname;
-        //GLuint compShader(GLenum type, const char* src);
-        
+        std::map<std::string, GLint> attributes;
+        std::map<std::string, GLint> uniforms;
         GLuint handle;
     };
 };
