@@ -22,6 +22,8 @@
 #include <cstring>
 #include <climits>
 
+using namespace Lib3dapp;
+
 Shader::Shader(std::string source, GLenum type, std::string _name, LightingState lights):
 handle(0),
 name(_name) {    

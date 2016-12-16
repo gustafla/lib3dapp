@@ -23,6 +23,8 @@
 #include "3dapp_graphics.hpp"
 #include "3dapp_util.hpp"
 
+using namespace Lib3dapp;
+
 const ConfigParameter Config::reservedParams[Config::NUM_RESERVED_PARAMS] = {
     ConfigParameter("--fullscreen", 0),
     ConfigParameter("--display", 1),

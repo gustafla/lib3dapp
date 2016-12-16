@@ -16,6 +16,8 @@
 
 #include "3dapp_framebuffer.hpp"
 
+using namespace Lib3dapp;
+
 Framebuffer::Framebuffer(GLuint w, GLuint h):
 width(w),
 height(h),

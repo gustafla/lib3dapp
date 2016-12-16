@@ -16,6 +16,8 @@
 
 #include "3dapp_buffer.hpp"
 
+using namespace Lib3dapp;
+
 Buffer::Buffer(GLfloat* data, GLuint size, GLenum hint) {
     glGenBuffers(1, &handle);
     check();

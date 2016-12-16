@@ -18,6 +18,8 @@
 #include <iostream>
 #include "3dapp_consts.hpp"
 
+using namespace Lib3dapp;
+
 Texture::Texture(RgbaImage image):
 width(image.getWidth()),
 height(image.getHeight()),

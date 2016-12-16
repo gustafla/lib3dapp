@@ -16,6 +16,8 @@
 
 #include "3dapp_lighting_state.hpp"
 
+using namespace Lib3dapp;
+
 LightingState::LightingState(float _ambient, const Light* _pointLights, unsigned int nPointLights, const Light* _directionalLights, unsigned int nDirectionalLights):
 ambient(_ambient) {
     for (int i=0; i<nPointLights; i++) {

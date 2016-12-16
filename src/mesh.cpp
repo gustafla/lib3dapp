@@ -17,6 +17,8 @@
 #include "3dapp_mesh.hpp"
 #include <iostream>
 
+using namespace Lib3dapp;
+
 Mesh::Mesh() {
     
 }

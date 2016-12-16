@@ -23,6 +23,8 @@
 #include <cmath>
 #include "3dapp_geo_primitives.hpp"
 
+using namespace Lib3dapp;
+
 Application::Application(Window& _window):
 running(true),
 window(_window) {

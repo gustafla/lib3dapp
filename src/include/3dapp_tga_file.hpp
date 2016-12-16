@@ -23,4 +23,3 @@ namespace Lib3dapp {
     RgbaImage loadTGAFile(std::string filename);
 };
 
-using namespace Lib3dapp;

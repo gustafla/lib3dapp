@@ -17,6 +17,8 @@
 #include "3dapp_mvp.hpp"
 #include "3dapp_consts.hpp"
 
+using namespace Lib3dapp;
+
 MVP::MVP(mat4 _projection, GLfloat vtx, GLfloat vty, GLfloat vtz, GLfloat vrx, GLfloat vry, GLfloat vrz, GLfloat tx, GLfloat ty, GLfloat tz, GLfloat rx, GLfloat ry, GLfloat rz, GLfloat _scale):
 projection(_projection),
 modelModified(true),

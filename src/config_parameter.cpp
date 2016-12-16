@@ -16,6 +16,8 @@
     
 #include "3dapp_config_parameter.hpp"
 
+using namespace Lib3dapp;
+
 ConfigParameter::ConfigParameter(std::string param, int _extra):
 parameter(param),
 extra(_extra) {

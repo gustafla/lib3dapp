@@ -31,4 +31,3 @@ namespace Lib3dapp {
     void setResolutionUniform(Program& shader, vec2 r=vec2(SCREEN_W, SCREEN_H));
 };
 
-using namespace Lib3dapp;

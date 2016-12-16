@@ -18,6 +18,8 @@
 #include "3dapp_graphics.hpp"
 #include <cmath>
 
+using namespace Lib3dapp;
+
 mat4 Lib3dapp::getPProjMat(float fov, float aspect, float znear, float zfar) {
     mat4 mat;
     

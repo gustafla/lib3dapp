@@ -21,6 +21,8 @@
 #include "3dapp_consts.hpp"
 #include "3dapp_shader.hpp"
 
+using namespace Lib3dapp;
+
 Program::Program(Shader vertexShader, Shader fragmentShader):
 handle(0) {
     GLint linked; //Link status flag, used later

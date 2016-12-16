@@ -59,4 +59,3 @@ namespace Lib3dapp {
     extern const char* NAME_U_LIGTH_AMBIENT;
 };
 
-using namespace Lib3dapp;

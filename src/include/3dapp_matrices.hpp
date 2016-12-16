@@ -45,4 +45,3 @@ namespace Lib3dapp {
     mat4 getScaleMat(float x);
 };
 
-using namespace Lib3dapp;

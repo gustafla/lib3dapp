@@ -22,4 +22,3 @@ namespace Lib3dapp {
     Mesh buildTriangleEquilateralMesh();
 };
 
-using namespace Lib3dapp;

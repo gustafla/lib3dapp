@@ -22,6 +22,8 @@
 #include <iostream>
 #include "3dapp_paths.hpp"
 
+using namespace Lib3dapp;
+
 StaticModel* ResourceHandler::getStaticModel(std::string name) {
     if (staticModels.find(name) == staticModels.end()) {
         Mesh modelMesh = loadOBJFile(meshPath(name));

@@ -16,6 +16,8 @@
 
 #include "3dapp_renderbuffer.hpp"
 
+using namespace Lib3dapp;
+
 Renderbuffer::Renderbuffer(GLuint w, GLuint h) {
     glGenRenderbuffers(1, &handle);
     glBindRenderbuffer(GL_RENDERBUFFER, handle);

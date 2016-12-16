@@ -42,4 +42,3 @@ namespace Lib3dapp {
     };
 };
 
-using namespace Lib3dapp;

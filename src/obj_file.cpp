@@ -26,6 +26,8 @@
 #include "3dapp_util.hpp"
 #include "3dapp_graphics.hpp"
 
+using namespace Lib3dapp;
+
 Mesh Lib3dapp::loadOBJFile(std::string filename) {
     std::vector<std::string> objLine;
     

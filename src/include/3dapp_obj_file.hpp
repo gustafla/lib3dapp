@@ -23,4 +23,3 @@ namespace Lib3dapp {
     Mesh loadOBJFile(std::string filename);
 };
 
-using namespace Lib3dapp;

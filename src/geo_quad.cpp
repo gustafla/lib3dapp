@@ -16,6 +16,8 @@
 
 #include "3dapp_geo_quad.hpp"
 
+using namespace Lib3dapp;
+
 Mesh Lib3dapp::buildQuadMesh() {
     Mesh mesh;
     mesh.pushPosition(vec3(-1.0, -1.0,  0.0));

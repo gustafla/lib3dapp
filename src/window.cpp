@@ -22,6 +22,8 @@
 #include "3dapp_consts.hpp"
 #include <cstring>
 
+using namespace Lib3dapp;
+
 Window::Window(const Config& conf, std::string caption, vec2 realsize, float alpha):
 width(conf.w),
 height(conf.h),

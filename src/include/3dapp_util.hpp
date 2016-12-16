@@ -26,4 +26,3 @@ namespace Lib3dapp {
     int countSubstring(const std::string& str, const std::string& sub);
 };
 
-using namespace Lib3dapp;

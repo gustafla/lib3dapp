@@ -103,4 +103,3 @@ namespace Lib3dapp {
     vec4  vnml(vec4 a);
 };
 
-using namespace Lib3dapp;

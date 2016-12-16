@@ -42,4 +42,3 @@ namespace Lib3dapp {
     void cleanupGraphics();
 };
 
-using namespace Lib3dapp;

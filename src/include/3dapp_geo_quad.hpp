@@ -22,4 +22,3 @@ namespace Lib3dapp {
     Mesh buildQuadMesh();
 };
 
-using namespace Lib3dapp;

@@ -17,6 +17,8 @@
 #include "3dapp_rgba_image.hpp"
 #include <iostream>
 
+using namespace Lib3dapp;
+
 RgbaImage::RgbaImage(unsigned int w, unsigned int h, unsigned int s, bool c, bool a):
 color(c),
 alpha(a),

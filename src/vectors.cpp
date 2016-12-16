@@ -17,6 +17,8 @@
 #include "3dapp_vectors.hpp"
 #include <cmath>
 
+using namespace Lib3dapp;
+
 vec2::vec2() {
     x=0.0f;
     y=0.0f;

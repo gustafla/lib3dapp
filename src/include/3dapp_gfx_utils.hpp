@@ -33,4 +33,3 @@ namespace Lib3dapp {
     RgbaImage getPixel(vec4 color, bool alpha=false);
 };
 
-using namespace Lib3dapp;

@@ -16,6 +16,8 @@
 
 #include "3dapp_light.hpp"
 
+using namespace Lib3dapp;
+
 Light::Light(vec3 _vector, vec3 _color):
 vector(_vector),
 color(_color) {

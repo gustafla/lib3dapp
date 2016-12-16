@@ -18,6 +18,8 @@
 #include "3dapp_matrices.hpp"
 #include "3dapp_gfx_utils.hpp"
 
+using namespace Lib3dapp;
+
 ScalingRectangle::ScalingRectangle(vec2 src, vec2 tgt, float scale, vec2 offset):
 vbo(NULL),
 source(src),

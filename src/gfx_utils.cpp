@@ -16,6 +16,8 @@
 
 #include "3dapp_gfx_utils.hpp"
 
+using namespace Lib3dapp;
+
 float Lib3dapp::max(float n, float m) {
     return (n>m) ? n : m;
 }

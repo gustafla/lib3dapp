@@ -25,4 +25,3 @@ namespace Lib3dapp {
     std::string shaderPath(std::string filename);
 };
 
-using namespace Lib3dapp;

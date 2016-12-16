@@ -21,6 +21,8 @@
 #include <iostream>
 #include "3dapp_consts.hpp"
 
+using namespace Lib3dapp;
+
 StaticModel::StaticModel(Mesh mesh):
 normals(false),
 texcoords(false),

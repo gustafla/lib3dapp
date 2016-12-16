@@ -20,6 +20,8 @@
 #include <cstdlib>
 #include <fstream>
 
+using namespace Lib3dapp;
+
 void errorPrint(std::string filename) {
     std::cout << "loadTGAFile(" << filename << "): Failed to load TGA file\n";
 }
